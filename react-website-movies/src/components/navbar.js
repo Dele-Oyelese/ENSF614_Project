@@ -32,10 +32,10 @@ function Navbar() {
                     <Link to='/' className='nav-links' onClick={closeMobileMenu}> Home </Link>
                 </li>
                 <li className='nav-item'>
-                    <Link to='/admin' className='nav-links' onClick={closeMobileMenu}> Search </Link>
+                    <Link to='/search' className='nav-links' onClick={closeMobileMenu}> Search </Link>
                 </li>
                 <li className='nav-item'>
-                    <Link to='/allcourses' className='nav-links' onClick={closeMobileMenu}> All Movies </Link>
+                    <Link to='/allmovies' className='nav-links' onClick={closeMobileMenu}> All Movies </Link>
                 </li>
             </ul>
             {button && <Button buttonStyle='btn--outline'>Log In</Button>}            
