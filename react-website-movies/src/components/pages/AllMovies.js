@@ -1,41 +1,50 @@
 import '../../App.css';
-import React, { useState, useEffect } from 'react';
+
+import React, { useState} from 'react';
 
 
-function AllCourses() {
-    const [courses, setCourse] = useState([])
-    useEffect(() => {
-        const url = "";    
-        const fetchData = async () => {
-          try {
-            const response = await fetch(url);
-            const json = await response.json();
-            setCourse(json);
-          } catch (error) {
-            console.log("error", error);
-          }
-        };
+
+function AllMovies() {
+    const [movie, setMovie] = useState([])
     
-        fetchData();
-    }, []);
+
+    const searchMovie = async () => {
+        const url = '...' + movie;
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                Accept: 'application/json',
+            },
+        });
+        const result = await response.json();
+        setMovie(result);
+        setMovie('');        
+    }
+
 
     return (
         <>
-        <div className='hero-container'>
-        <div className='allMovies'>
-            <h1>Movies: </h1>
-            <ul>
-                {courses.map(item => (                    
-                    <li>                        
-                        <h1>Movie name = {item.name} </h1>                        
-                        <p>Capacity = {item.capacity}</p>                        
-                    </li>
-                ))}
-            </ul>
+        <div className='movie'>
+        
+            <div className="input-group">
+                <input type="text" value={movie} onChange={(e) => setMovie(e.target.value)} className="form-control" placeholder="Search for a movie, e.g. Black Panther"></input>                        
+                <button onClick={searchMovie} className="btn btn-dark" type="button">Search</button>                        
             </div>
-        </div>            
+
+            <p>Display the searched movie with showtimes below:</p>
+
+
+           
+
+
+
+        </div>
+
+        
+
         </>
     );
 }
 
-export default AllCourses;
+export default AllMovies;
+

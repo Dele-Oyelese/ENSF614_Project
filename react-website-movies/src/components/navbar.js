@@ -29,10 +29,10 @@ function Navbar() {
 
             <ul className={click ? 'nav-menu active':'nav-menu'}>
                 <li className='nav-item'>
-                    <Link to='/' className='nav-links' onClick={closeMobileMenu}> Home </Link>
+                    <Link to='/cancelticket' className='nav-links' onClick={closeMobileMenu}> Cancel Ticket </Link>
                 </li>
                 <li className='nav-item'>
-                    <Link to='/search' className='nav-links' onClick={closeMobileMenu}> Search </Link>
+                    <Link to='/register' className='nav-links' onClick={closeMobileMenu}> Register </Link>
                 </li>
                 <li className='nav-item'>
                     <Link to='/allmovies' className='nav-links' onClick={closeMobileMenu}> All Movies </Link>
