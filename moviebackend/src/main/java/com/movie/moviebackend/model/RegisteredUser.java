@@ -1,10 +1,12 @@
 package com.movie.moviebackend.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
 @Entity
-@Table
+@Table(name ="user")
 public class RegisteredUser {
     @Id
     @SequenceGenerator(name = "RU_sequence",

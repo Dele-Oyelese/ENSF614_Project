@@ -3,6 +3,7 @@ package com.movie.moviebackend.model;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "movie")
 public class Movie {
     @Id
     @SequenceGenerator(name = "movie_sequence",

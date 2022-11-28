@@ -4,7 +4,7 @@ package com.movie.moviebackend.model;
 import javax.persistence.*;
 
 @Entity
-@Table
+@Table(name ="seat")
 public class Seat {
 
     @Id

@@ -31,7 +31,7 @@ public class RegisteredUserController {
     }
 
     @PostMapping
-    public void registerNewStudent(@RequestBody RegisteredUser user){
+    public void registerNewUser(@RequestBody RegisteredUser user){
         userService.addRegisteredUser(user);
     }
 
@@ -43,7 +43,7 @@ public class RegisteredUserController {
         userService.updateUser(userId,name,email);
     }
 
-    
+
 
 
 }
