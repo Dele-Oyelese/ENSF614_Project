@@ -1,0 +1,12 @@
+Currently the backend has the following model items:
+	- BoxOffice
+	- Movie
+	- RegisteredUser
+	- Seat
+	- Ticket
+	
+	* have we combined user and registereduser into one class?
+		* initial document specifies two types of "User", may need to have 3 classes
+		* may need to apply some fancy design patterns to implement this under a generic
+		  "user" class
+		
