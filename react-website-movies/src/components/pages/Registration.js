@@ -13,7 +13,7 @@ function Registration() {
         e.preventDefault();
         const user = { name, address, password, email, creditcard };
         console.log(JSON.stringify(user));
-        fetch("...", {
+        fetch("http://localhost:8080/api/v1/user", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(user),
