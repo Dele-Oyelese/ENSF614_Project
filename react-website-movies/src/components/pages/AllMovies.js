@@ -39,8 +39,12 @@ function AllMovies() {
                         return val
                     } return "" 
                 }).map((val, key)=>{
-                    return <div>{val.movie_name} </div>;
+                    return <div>{val.movie_name} 
+                    <p></p>
+                    <img src={val.movie_name + ".jpg"} width="200" length ="200"/>
+                    </div>;
                 })}
+                
             </div>
 
         </div>
