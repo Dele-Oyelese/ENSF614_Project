@@ -20,24 +20,30 @@ public class RegisteredUser {
     private String name;
     private String address;
     private String email;
+
+
+
+    private String password;
     private int creditNum;
 
 
     RegisteredUser(){
     }
 
-    public RegisteredUser(Long id, String name, String address, int creditNum,  String email ){
+    public RegisteredUser(Long id, String name, String address, int creditNum,  String email, String password ){
         this.id=id;
         this.address=address;
         this.name =name;
         this.creditNum=creditNum;
         this.email=email;
+        this.password = password;
     }
-    public RegisteredUser(String name, String address, int creditNum, String email ){
+    public RegisteredUser(String name, String address, int creditNum, String email, String password ){
         this.address=address;
         this.name =name;
         this.creditNum=creditNum;
         this.email=email;
+        this.password = password;
     }
 
     public Long getId() {
@@ -78,5 +84,13 @@ public class RegisteredUser {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
