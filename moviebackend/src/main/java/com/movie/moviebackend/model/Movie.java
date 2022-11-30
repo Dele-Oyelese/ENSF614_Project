@@ -1,10 +1,11 @@
 package com.movie.moviebackend.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "movie")
-public class Movie {
+public class Movie implements Serializable {
     @Id
     @SequenceGenerator(name = "movie_sequence",
             sequenceName = "movie_sequence",
@@ -15,8 +16,52 @@ public class Movie {
     )
     private Long id;
 
+    private String title;
 
+    private String showTime;
 
+    /*
+    Need to implement a @ManyToMany hashset if we include
+    multiple theaters with the same movie
+     */
 
+    public Movie(){}
 
+    public Movie(Long id, String title, String showTime)
+    {
+        this.id = id;
+        this.title = title;
+        this.showTime = showTime;
+    }
+
+    public Movie(String title, String showTime)
+    {
+        this.title = title;
+        this.showTime = showTime;
+    }
+
+    /* Getters and setters */
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getShowTime() {
+        return showTime;
+    }
+
+    public void setShowTime(String showTime) {
+        this.showTime = showTime;
+    }
 }
