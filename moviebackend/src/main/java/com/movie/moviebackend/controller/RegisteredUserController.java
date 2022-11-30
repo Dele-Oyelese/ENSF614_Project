@@ -30,6 +30,11 @@ public class RegisteredUserController {
         return userService.getUserById(userId);
     }
 
+    @GetMapping("Email/{email}")
+    public RegisteredUser getUser(@PathVariable(required = false) String email) {
+        return userService.getUserByEmail(email);
+    }
+
     @PostMapping
     public void registerNewUser(@RequestBody RegisteredUser user){
         userService.addRegisteredUser(user);
