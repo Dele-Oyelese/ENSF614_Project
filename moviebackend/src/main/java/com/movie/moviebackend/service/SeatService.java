@@ -28,7 +28,17 @@ public class SeatService {
     }
 
     /* Get all seats for a given movie */
-    /* TODO: do dis */
+    public List<Seat> getMovieSeats(Long movieId)
+    {
+        List<Seat> seatList = seatRepo.findSeatByMovieId(movieId);
+
+        if(seatList.isEmpty())
+        {
+            throw new IllegalStateException("No seats for movie ID: " + movieId);
+        }
+
+        return seatList;
+    }
 
     /* Add a new seat */
     public void addNewSeat(Seat seat)
@@ -55,7 +65,28 @@ public class SeatService {
         }
         else
         {
+            /* TODO: delete all tickets for this seat */
             seatRepo.deleteById(id);
+        }
+    }
+
+    /* Delete all seats from a given movie */
+    public void deleteMovieSeats(Long movieId)
+    {
+        List<Seat> seatList = seatRepo.findSeatByMovieId(movieId);
+
+        if(seatList.isEmpty())
+        {
+            throw new IllegalStateException("No seats for movie ID: " + movieId);
+        }
+        else
+        {
+            /* Delete all seats in this movie */
+            for(Seat seat : seatList)
+            {
+                /* TODO: delete all tickets for this seat */
+                seatRepo.deleteById(seat.getId());
+            }
         }
     }
 

@@ -18,12 +18,21 @@ public class SeatController {
         this.seatService = seatService;
     }
 
+    /* Get all seats in the table */
     @GetMapping("/getAll")
     public List<Seat> getSeats()
     {
         return seatService.getAllSeats();
     }
 
+    /* Get all seats with the given movie ID */
+    @GetMapping("/movie/{movieId}")
+    public List<Seat> getMovieSeats(@PathVariable("movieId") Long movieId)
+    {
+        return seatService.getMovieSeats(movieId);
+    }
+
+    /* Add a new seat with JSON format seat */
     @PostMapping("/add")
     public String addNewSeat(@RequestBody Seat seat)
     {
@@ -31,12 +40,22 @@ public class SeatController {
         return "New seat added.";
     }
 
+    /* Delete a seat of the given ID */
     @DeleteMapping(path = "{id}")
     public void deleteSeat(@PathVariable("id") Long id)
     {
+        /* TODO: cancel all tickets with this seat id */
         seatService.deleteSeat(id);
     }
 
+    /* Delete all seats in the given movie ID */
+    @DeleteMapping("/movie/{movieId}")
+    public void deleteMovieSeats(@PathVariable("movieId") Long movieId)
+    {
+        seatService.deleteMovieSeats(movieId);
+    }
+
+    /* Update the seat */
     @PutMapping(path = "{id}")
     public void updateSeat(
             @PathVariable("id") Long id,

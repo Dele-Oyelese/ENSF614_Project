@@ -46,4 +46,50 @@ public class TicketService {
         }
         return ticketById.get();
     }
+
+    public Ticket getTicketBySeatId(Long seatId)
+    {
+        Optional<Ticket> ticket = ticketRepo.findTicketBySeatId(seatId);
+        if (!ticket.isPresent())
+        {
+            throw new IllegalStateException("Ticket for seat #" + seatId + " does not exist");
+        }
+        return ticket.get();
+    }
+
+    public Ticket getTicketByBuyerName(String buyerName)
+    {
+        Optional<Ticket> ticket = ticketRepo.findTicketByBuyerName(buyerName);
+        if (!ticket.isPresent())
+        {
+            throw new IllegalStateException("Ticket for buyer \"" + buyerName + "\" does not exist");
+        }
+        return ticket.get();
+    }
+
+    public void deleteTicket(Long id)
+    {
+        boolean exists = ticketRepo.existsById(id);
+        if(!exists)
+        {
+            throw new IllegalStateException("Ticket #" + id + " does not exist.");
+        }
+        else
+        {
+            ticketRepo.deleteById(id);
+        }
+    }
+
+    public void deleteTicketBySeatId(Long seatId)
+    {
+        Optional<Ticket> ticket = ticketRepo.findTicketBySeatId(seatId);
+        if (!ticket.isPresent())
+        {
+            throw new IllegalStateException("Ticket for seat #" + seatId + " does not exist");
+        }
+        else
+        {
+            ticketRepo.deleteById(ticket.get().getId());
+        }
+    }
 }

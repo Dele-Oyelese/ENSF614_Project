@@ -19,12 +19,14 @@ public class MovieController {
         this.movieService = movieService;
     }
 
+    /* Get all available movies at the theater */
     @GetMapping("/getAll")
     public List<Movie> getMovies()
     {
         return movieService.getAllMovies();
     }
 
+    /* Add a new movie to the table by passing JSON format movie */
     @PostMapping("/add")
     public String addNewMovie(@RequestBody Movie movie)
     {
@@ -32,12 +34,16 @@ public class MovieController {
         return "New movie added.";
     }
 
+    /* Delete the movie listing of the given ID */
     @DeleteMapping(path = "{id}")
     public void deleteMovie(@PathVariable("id") Long id)
     {
+        /* TODO: delete all seats */
+            /* TODO: delete all tickets (inside seat) */
         movieService.deleteMovie(id);
     }
 
+    /* Update the movie by passing certain parameters */
     @PutMapping(path = "{id}")
     public void updateMovie(
             @PathVariable("id") Long id,

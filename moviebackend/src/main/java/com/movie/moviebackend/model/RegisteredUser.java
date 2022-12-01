@@ -27,7 +27,7 @@ public class RegisteredUser {
     private int creditNum;
 
 
-    RegisteredUser(){
+    public RegisteredUser(){
     }
 
     public RegisteredUser(Long id, String name, String address, int creditNum,  String email, String password ){
