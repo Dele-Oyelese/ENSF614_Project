@@ -33,6 +33,32 @@ public class BoxOfficeService {
 
     public List<BoxOffice> getAllBoxOffice(){return boxOfficeRepo.findAll();}
 
+
+    public BoxOffice getOneTicket (Long ticketId, Long movieID){
+
+        Movie movie = movieRepo.findById(movieID).get();
+        Ticket ticket = ticketRepo.findById(ticketId).get();
+
+        Set<BoxOffice> boxo = new HashSet<BoxOffice>();
+
+
+        for(BoxOffice b:ticket.getBoxOffices()){
+            boxo.add(b);
+        }
+        boolean ticketFound = false;
+
+        for(BoxOffice b: boxo){
+            if(b.getMovie().equals(movie)){
+                return b;
+            }
+        }
+        if(!ticketFound){
+            throw new IllegalStateException("Ticket doesn't exist");
+        }
+        return null;
+    }
+
+
     public void purchaseTicketForMovie (Long ticketId, Long movieID){
 
         Movie movie = movieRepo.findById(movieID).get();

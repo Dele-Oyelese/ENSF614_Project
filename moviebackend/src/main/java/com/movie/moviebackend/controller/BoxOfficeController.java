@@ -30,6 +30,14 @@ public class BoxOfficeController {
     public List<BoxOffice> getAllBoxOffice(){return boxOfficeService.getAllBoxOffice();}
 
 
+    @GetMapping("/get/{ticketId}/movie/{movieId}")
+    public BoxOffice getTicket(
+            @PathVariable Long movieId,
+            @PathVariable Long ticketId
+    ){
+        return boxOfficeService.getOneTicket(ticketId,movieId);
+    }
+
     @PutMapping("/purchase/{ticketId}/movie/{movieId}")
     public void purchaseTicket(
             @PathVariable Long movieId,
