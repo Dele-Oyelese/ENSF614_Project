@@ -19,7 +19,10 @@ public class TicketController {
     private final TicketService ticketService;
 
     @Autowired
-    public TicketController(TicketService ticketService){this.ticketService=ticketService;}
+    public TicketController(TicketService ticketService)
+    {
+        this.ticketService = ticketService;
+    }
 
     @GetMapping("/getAll")
     public List<Ticket> getTickets()
@@ -27,17 +30,16 @@ public class TicketController {
         return ticketService.getAllTickets();
     }
 
-    @GetMapping("/{ticketId}")
-    public Ticket getTicket(@PathVariable(required = false) Long ticketId) {
-        return ticketService.getTicketById(ticketId);
+    @GetMapping("{id}")
+    public Ticket getTicket(@PathVariable(required = false) Long id)
+    {
+        return ticketService.getTicketById(id);
     }
 
-    @PostMapping
-    public void registerNewTicket(@RequestBody Ticket ticket){
-        ticketService.addTicket(ticket);
+    @PostMapping("/add")
+    public void registerNewTicket(@RequestBody Ticket ticket)
+    {
+        ticketService.addNewTicket(ticket);
     }
-
-
-
 
 }

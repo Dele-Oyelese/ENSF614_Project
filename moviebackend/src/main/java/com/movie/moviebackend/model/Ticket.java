@@ -21,42 +21,23 @@ public class Ticket {
             generator = "ticket_sequence"
     )
     private Long id;
-    private String seatNum;
-    private double price;
-    private boolean buyerStatus;
-    private String movieName;
+    private Long seatId;
+    private double pricePaid;
+    private String buyerName;
 
-    @OneToMany(mappedBy = "ticket")
+    public Ticket(){}
 
-    @JsonIgnoreProperties("ticket")
-
-    Set<BoxOffice> boxOffices;
-
-    Ticket(){}
-
-    public Ticket(Long id, String seatNum, Double price, boolean buyerStatus, String movieName){
-
-        this.id =id;
-        this.buyerStatus =buyerStatus;
-        this.seatNum = seatNum;
-        this.price =price;
-        this.movieName =movieName;
-
+    public Ticket(Long id, Long seatId, Double pricePaid, String buyerName){
+        this.id = id;
+        this.seatId = seatId;
+        this.pricePaid = pricePaid;
+        this.buyerName = buyerName;
     }
 
-    public Ticket(String seatNum, Double price, boolean buyerStatus, String movieName){
-        this.buyerStatus =buyerStatus;
-        this.seatNum = seatNum;
-        this.price =price;
-        this.movieName =movieName;
-    }
-
-    public void addMovie(BoxOffice b) {
-        boxOffices.add(b);
-    }
-
-    public void removeMovie(BoxOffice r){
-        boxOffices.remove(r);
+    public Ticket(Long seatId, Double pricePaid, String buyerName){
+        this.seatId = seatId;
+        this.pricePaid = pricePaid;
+        this.buyerName = buyerName;
     }
 
     public Long getId() {
@@ -67,47 +48,28 @@ public class Ticket {
         this.id = id;
     }
 
-    public String getSeatNum() {
-        return seatNum;
+    public Long getSeatId() {
+        return seatId;
     }
 
-    public void setSeatNum(String seatNum) {
-        this.seatNum = seatNum;
+    public void setSeatId(Long seatId) {
+        this.seatId = seatId;
     }
 
-    public double getPrice() {
-        return price;
+    public double getPricePaid() {
+        return pricePaid;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setPricePaid(double pricePaid) {
+        this.pricePaid = pricePaid;
     }
 
-    public boolean isBuyerStatus() {
-        return buyerStatus;
+    public String getBuyerName() {
+        return buyerName;
     }
 
-    public void setBuyerStatus(boolean buyerStatus) {
-        this.buyerStatus = buyerStatus;
+    public void setBuyerName(String buyerName) {
+        this.buyerName = buyerName;
     }
-
-    public String getMovieName() {
-        return movieName;
-    }
-
-    public void setMovieName(String movieName) {
-        this.movieName = movieName;
-    }
-
-    public Set<BoxOffice> getBoxOffices() {
-        return boxOffices;
-    }
-
-    public void setBoxOffices(Set<BoxOffice> boxOffices) {
-        this.boxOffices = boxOffices;
-    }
-
-
-
 
 }

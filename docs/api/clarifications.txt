@@ -1,12 +1,24 @@
 Currently the backend has the following model items:
-	- BoxOffice
+	- BoxOffice (remove? -> control via API chains)
 	- Movie
 	- RegisteredUser
 	- Seat
 	- Ticket
 	
-	* have we combined user and registereduser into one class?
-		* initial document specifies two types of "User", may need to have 3 classes
-		* may need to apply some fancy design patterns to implement this under a generic
-		  "user" class
-		
+Front end clarifications:
+
+Movie
+
+
+RegisteredUser
+	- how is the movie refund credit handled?
+
+Seat
+	- how many seats per movie? Dynamic number?
+
+Ticket
+	- what does this look like? Easy things:
+		- name
+		- movie title and time
+		- price paid
+		- seat reserved
