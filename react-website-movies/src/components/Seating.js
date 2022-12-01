@@ -23,11 +23,6 @@ function Seating() {
             <button type="button" class="btn-outline-success btn-lg seat">J</button>
             <button type="button" class="btn-outline-success btn-lg seat">K</button>         
 
-        
-
-            
-
-            
 
         </div>
 

@@ -1,12 +1,17 @@
 import '../../App.css';
 import jsondata from './movie.json';
-
+import {Link, useNavigate} from 'react-router-dom';
 import React, { useState} from 'react';
-
+import { Navigate } from 'react-router-dom';
 
 function AllMovies() {
     const [movie, setMovie] = useState([])
+    let navigate = useNavigate();
     
+    const handleClick = (e) => {
+        navigate('/login');
+    }
+
 
     const searchMovie = async () => {
         const url = '...' + movie;
@@ -39,7 +44,9 @@ function AllMovies() {
                         return val
                     } return "" 
                 }).map((val, key)=>{
-                    return <div>{val.movie_name} 
+                    return <div>
+                    <button onClick={handleClick} type="button">{val.movie_name}</button>
+                    {/* {val.movie_name}  */}
                     <p></p>
                     <img src={val.movie_name + ".jpg"} width="200" length ="200"/>
                     </div>;
