@@ -1,11 +1,51 @@
 import '../../App.css';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function LogIn(){
+
+    const[password,setPassword] = React.useState('')
+    const[email,setEmail] = React.useState('')
+    const[check,setCheck] = React.useState('')
+    const[validate,setValidate] = React.useState(false)
+    const getEmail = localStorage.getItem("email")
+    const [students,setStudents] = React.useState([])
+    let navigate = useNavigate();
+
+    const SubmitLogin = (e) => {
+        e.preventDefault()
+        const user={email,password}
+        setCheck(email)
+    }
+
+    React.useEffect(()=> {
+        fetch("http://localhost:8080/api/v1/user/Email/".concat(email) )
+        .then(res =>res.json())
+        .then((result)=>{
+          if(result.status !== 500  && (result.email ===parseInt(email) )&& result.password === password){
+            localStorage.setItem("email",result.email)
+            const getEmail = localStorage.getItem("email")
+            setValidate(true)
+            navigate('/registration');
+          }
+          else{
+            setCheck(false)
+            setEmail('')
+            setPassword('')
+          }
+        }
+        )
+      },[check])
+
+
+
+
+
+
     return(
         <>
         <div className='movie'>
-            <form>
+            <form onSubmit={SubmitLogin}>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Email address</label>
                     <input type="email" class="form-control" placeholder="Enter email"></input>
