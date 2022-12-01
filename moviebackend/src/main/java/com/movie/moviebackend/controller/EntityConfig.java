@@ -22,9 +22,6 @@ import com.movie.moviebackend.repository.TicketRepo;
 @Configuration
 public class EntityConfig {
 
-
-
-
         @Bean
         CommandLineRunner commandLineRunner3(RegisteredUserRepo userRepo){
             return args -> {
@@ -36,13 +33,31 @@ public class EntityConfig {
                 RegisteredUser user5= new RegisteredUser("Dele", "WestBrook", 7787, "Dele@Daly.com","kskhdp");
 
                 userRepo.saveAll(List.of(user1,user2,user3,user4,user5));
-
-
-
-
             };
         }
 
+        @Bean
+        CommandLineRunner commandLineRunner4(MovieRepo movieRepo)
+        {
+            return args -> {
+                Movie m1 = new Movie("Shrek 5", "14:00");
+                Movie m2 = new Movie("Shrek 5", "17:45");
+                Movie m3 = new Movie("Shrek 5", "21:00");
 
+                Movie m4 = new Movie("The Room 2: Electric Boogaloo", "11:00");
 
+                Movie m5 = new Movie("Napoleon Dynamite 2", "07:15");
+
+                Movie m6 = new Movie("Hot Rod 2", "15:30");
+
+                movieRepo.saveAll(List.of(
+                        m1,
+                        m2,
+                        m3,
+                        m4,
+                        m5,
+                        m6
+                ));
+            };
+        }
 }
