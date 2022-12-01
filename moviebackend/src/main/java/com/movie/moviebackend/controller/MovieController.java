@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping(path = "api/v1/movie")
 public class MovieController {
 
@@ -25,12 +26,12 @@ public class MovieController {
         return movieService.getAllMovies();
     }
 
-    @PostMapping("/add")
-    public String addNewMovie(@RequestBody Movie movie)
-    {
-        movieService.addNewMovie(movie);
-        return "New movie added.";
-    }
+//    @PostMapping("/add")
+//    public String addNewMovie(@RequestBody Movie movie)
+//    {
+//        movieService.addNewMovie(movie);
+//        return "New movie added.";
+//    }
 
     @DeleteMapping(path = "{id}")
     public void deleteMovie(@PathVariable("id") Long id)
@@ -38,13 +39,12 @@ public class MovieController {
         movieService.deleteMovie(id);
     }
 
-    @PutMapping(path = "{id}")
-    public void updateMovie(
-            @PathVariable("id") Long id,
-            @RequestParam(required = false) String title,
-            @RequestParam(required = false) String showTime
-    )
-    {
-        movieService.updateMovie(id, title, showTime);
-    }
+//    @PutMapping(path = "{id}")
+//    public void updateMovie(
+//            @PathVariable("id") Long id,
+//            @RequestParam(required = false) String title,
+//            @RequestParam(required = false) String showTime)
+//    {
+//        movieService.updateMovie(id, title, showTime);
+//    }
 }

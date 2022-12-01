@@ -60,13 +60,6 @@ public class RegisteredUserService {
 
     }
 
-//    public RegisteredUserRepo getUserByEmail(String email) {
-//        Optional<RegisteredUser> userByEmail = registeredUserRepo.findUserByEmail(email);
-//        if (!userByEmail.isPresent()) {
-//            throw new IllegalStateException("User does not exist");
-//        }
-//        return (RegisteredUserRepo) userByEmail.get();
-//    }
 
     public RegisteredUser getUserById(Long userID) {
         Optional<RegisteredUser> userById = registeredUserRepo.findById(userID);
