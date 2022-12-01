@@ -1,11 +1,19 @@
 package com.movie.moviebackend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonView;
+import com.movie.moviebackend.MovieView;
+
 import javax.persistence.*;
-import java.io.Serializable;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "movie")
-public class Movie implements Serializable {
+public class Movie  {
     @Id
     @SequenceGenerator(name = "movie_sequence",
             sequenceName = "movie_sequence",
@@ -14,16 +22,49 @@ public class Movie implements Serializable {
             strategy = GenerationType.SEQUENCE,
             generator = "movie_sequence"
     )
+    @JsonView(MovieView.id.class)
     private Long id;
 
+    @JsonView(MovieView.CoreData.class)
     private String title;
-
     private String showTime;
+
+    @OneToMany(mappedBy = "movie")
+    // @JsonManagedReference
+    // @JsonIgnore
+    @JsonIgnoreProperties("movie")
+    @JsonView(MovieView.FullData.class)
+    Set<BoxOffice> boxOffices;
+
+
+//
+//    @OneToMany(mappedBy = "movie")
+//    // @JsonManagedReference
+//    // @JsonIgnore
+//    @JsonView(MovieView.FullData.class)
+//    @JsonIgnoreProperties("movie")
+//    Set<Seat> seats;
 
     /*
     Need to implement a @ManyToMany hashset if we include
     multiple theaters with the same movie
      */
+
+
+    public void addTicket(BoxOffice b){boxOffices.add(b);}
+    public void removeTicket(BoxOffice b){boxOffices.remove(b);}
+
+    @Override
+    public boolean equals(Object that){
+        if(this.getClass() != that.getClass()){
+            return false;
+        }
+
+        Movie m = (Movie) that;
+        return (this.getId() == m.getId() && this.getTitle().equals(m.getTitle()));
+
+    }
+
 
     public Movie(){}
 
@@ -32,6 +73,7 @@ public class Movie implements Serializable {
         this.id = id;
         this.title = title;
         this.showTime = showTime;
+
     }
 
     public Movie(String title, String showTime)
@@ -64,4 +106,14 @@ public class Movie implements Serializable {
     public void setShowTime(String showTime) {
         this.showTime = showTime;
     }
+
+    public Set<BoxOffice> getBoxOffices() {
+        return boxOffices;
+    }
+
+    public void setBoxOffices(Set<BoxOffice> boxOffices) {
+        this.boxOffices = boxOffices;
+    }
+
+
 }
