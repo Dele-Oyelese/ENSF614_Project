@@ -48,11 +48,11 @@ public class EntityConfig {
                 movieRepo.saveAll(List.of(movie1,movie2,movie3,movie4,movie5));
 
 
-                BoxOffice b1 = new BoxOffice(new TransactionKey((long)1,(long)1),ticket1,movie1);
+//                BoxOffice b1 = new BoxOffice(new TransactionKey((long)1,(long)1),ticket1,movie1);
+////
+////                new TransactionKey(1L,1L),
 //
-//                new TransactionKey(1L,1L),
-
-                boxOfficeRepo.saveAll(List.of(b1));
+//                boxOfficeRepo.saveAll(List.of(b1));
 
 
 

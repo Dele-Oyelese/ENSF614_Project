@@ -1,6 +1,7 @@
 package com.movie.moviebackend.controller;
 
 import com.movie.moviebackend.model.Movie;
+import com.movie.moviebackend.model.RegisteredUser;
 import com.movie.moviebackend.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,7 @@ public class MovieController {
         this.movieService = movieService;
     }
 
-    @GetMapping("/getAll")
+    @GetMapping
     public List<Movie> getMovies()
     {
         return movieService.getAllMovies();
@@ -47,4 +48,9 @@ public class MovieController {
 //    {
 //        movieService.updateMovie(id, title, showTime);
 //    }
+
+    @GetMapping("title/{title}")
+    public Movie getMovie(@PathVariable(required = false) String title) {
+        return movieService.getMovieByTitle(title);
+    }
 }

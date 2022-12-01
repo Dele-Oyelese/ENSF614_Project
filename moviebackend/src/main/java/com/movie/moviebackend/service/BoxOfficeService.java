@@ -64,9 +64,9 @@ public class BoxOfficeService {
         Movie movie = movieRepo.findById(movieID).get();
         Ticket ticket = ticketRepo.findById(ticketId).get();
 
-//        if (ticket.getMovieName() == null) {
-//            ticket.setMovieName(movie.getTitle());
-//        }
+        if (ticket.getMovieName() == null) {
+            ticket.setMovieName(movie.getTitle());
+        }
 
         BoxOffice b = new BoxOffice(ticket,movie);
         b.setMovie(movie);
@@ -96,6 +96,7 @@ public class BoxOfficeService {
                 movie.removeTicket(b);
                 ticketFound = true;
                 boxOfficeRepo.delete(b);
+                ticket.setMovieName(null);
             }
         }
         if(!ticketFound){

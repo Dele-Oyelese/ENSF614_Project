@@ -21,7 +21,7 @@ public class TicketController {
     @Autowired
     public TicketController(TicketService ticketService){this.ticketService=ticketService;}
 
-    @GetMapping("/getAll")
+    @GetMapping
     public List<Ticket> getTickets()
     {
         return ticketService.getAllTickets();

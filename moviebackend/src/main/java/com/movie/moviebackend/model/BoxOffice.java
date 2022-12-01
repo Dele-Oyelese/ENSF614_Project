@@ -21,14 +21,14 @@ public class BoxOffice {
     }
 
     @ManyToOne
-    @MapsId("ticket_id")
+    @MapsId("ticketId")
     @JoinColumn(name = "ticket_id",nullable = false)
     // @JsonBackReference
     @JsonIgnoreProperties("boxOffices")
     Ticket ticket;
 
     @ManyToOne
-    @MapsId("movie_id")
+    @MapsId("movieId")
     @JoinColumn(name = "movie_id", nullable = false)
     // @JsonBackReference
     @JsonIgnoreProperties("boxOffices")

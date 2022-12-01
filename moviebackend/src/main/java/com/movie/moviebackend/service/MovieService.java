@@ -1,6 +1,7 @@
 package com.movie.moviebackend.service;
 
 import com.movie.moviebackend.model.Movie;
+import com.movie.moviebackend.model.RegisteredUser;
 import com.movie.moviebackend.repository.MovieRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -78,4 +79,13 @@ public class MovieService {
             movie.setShowTime(showTime);
         }
     }
+
+    public Movie getMovieByTitle(String title) {
+        Optional<Movie> movieTile = movieRepo.findMovieByTitle(title);
+        if (!movieTile.isPresent()) {
+            throw new IllegalStateException("Title does not exist");
+        }
+        return movieTile.get();
+    }
+
 }
