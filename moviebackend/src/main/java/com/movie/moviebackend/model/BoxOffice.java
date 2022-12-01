@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "box_office")
 public class BoxOffice {
 
 
@@ -20,17 +21,17 @@ public class BoxOffice {
     }
 
     @ManyToOne
-    @MapsId("ticketId")
-    @JoinColumn(name = "ticket_id")
+    @MapsId("ticket_id")
+    @JoinColumn(name = "ticket_id",nullable = false)
     // @JsonBackReference
-    @JsonIgnoreProperties({"boxOffice"})
+    @JsonIgnoreProperties("boxOffices")
     Ticket ticket;
 
     @ManyToOne
-    @MapsId("movieId")
-    @JoinColumn(name = "movie_id")
+    @MapsId("movie_id")
+    @JoinColumn(name = "movie_id", nullable = false)
     // @JsonBackReference
-    @JsonIgnoreProperties("boxOffice")
+    @JsonIgnoreProperties("boxOffices")
     Movie movie;
 
     public BoxOffice(){}

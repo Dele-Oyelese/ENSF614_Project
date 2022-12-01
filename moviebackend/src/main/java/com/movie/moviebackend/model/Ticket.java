@@ -107,7 +107,10 @@ public class Ticket {
         this.boxOffices = boxOffices;
     }
 
-
+    @Override
+    public String toString() {
+        return "Student [id=" + id + ", name=" + movieName + "]";
+    }
 
 
 }
