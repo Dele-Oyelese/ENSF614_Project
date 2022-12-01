@@ -1,4 +1,4 @@
-package com.movie.moviebackend.controller;
+package com.movie.moviebackend.config;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
