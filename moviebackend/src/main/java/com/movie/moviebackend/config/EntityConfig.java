@@ -42,10 +42,22 @@ public class EntityConfig {
                 ticketRepo.saveAll(List.of(ticket1,ticket2,ticket3,ticket4,ticket5,ticket6));
 
                 Movie movie1 = new Movie("Black Adam", "12:00");
-                Movie movie2 = new Movie("Black Adam", "9:00");
-                Movie movie3 = new Movie("Black Adam", "16:00");
-                Movie movie4 = new Movie("Black Adam", "18:00");
-                Movie movie5 = new Movie("Black Adam", "20:00");
+                Movie movie2 = new Movie("Black Adam", "18:00");
+                Movie movie3 = new Movie("Black Adam", "20:00");
+                Movie movie4 = new Movie("Avengers","12:00");
+                Movie movie5 = new Movie("Avengers","16:00");
+                Movie movie6 = new Movie("Avengers","20:00");
+                Movie movie7 = new Movie("Smile", "12:00");
+                Movie movie8 = new Movie("Smile", "18:00");
+                Movie movie9 = new Movie("Smile", "20:00");
+                Movie movie10 = new Movie("Hannibal","12:00");
+                Movie movie11 = new Movie("Hannibal","18:00");
+                Movie movie12 = new Movie("Hannibal","20:00");
+                Movie movie13 = new Movie("Elf","12:00");
+                Movie movie14 = new Movie("Elf","18:00");
+                Movie movie15 = new Movie("Elf","20:00");
+
+
 
 //                Seat seat1 = new Seat("1", 20,movie1);
 ////                Set<Seat> seats = new HashSet<>();
@@ -53,7 +65,7 @@ public class EntityConfig {
 //                movie1.getSeats().add(seat1);
 
 
-                movieRepo.saveAll(List.of(movie1,movie2,movie3,movie4,movie5));
+                movieRepo.saveAll(List.of(movie1,movie2,movie3,movie4,movie5, movie6,movie7,movie8,movie9,movie10,movie11, movie12,movie13,movie14,movie15));
 
 
 
