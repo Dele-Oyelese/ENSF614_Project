@@ -17,6 +17,10 @@ function LogIn(){
         setCheck(email)
     }
 
+    const handleClick = (e) => {
+      navigate('/allmovies');
+  }
+
     React.useEffect(()=> {
         fetch("http://localhost:8080/api/v1/user/Email/".concat(email) )
         .then(res => res.json())
@@ -26,6 +30,12 @@ function LogIn(){
             const getEmail = localStorage.getItem("email")
             setValidate(true)
             navigate('/allmovies');
+          }
+          if(result.status === 500){
+            alert("You are not a registered user. Please register, or continue as a guest")
+            setCheck(false)
+            setEmail('')
+            setPassword('')
           }
           else{
             setCheck(false)
@@ -49,7 +59,11 @@ function LogIn(){
                     <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" value = {password} onChange={(e)=>setPassword(e.target.value)}></input>
                 </div>
                 <button type="submit" class="btn btn-primary">LogIn</button>
-            </form>   
+            </form>
+
+            <hr></hr>
+
+            <button type="submit" class="btn btn-primary" onClick={handleClick}>Continue as Guest</button>   
         </div>            
         </>
     );
