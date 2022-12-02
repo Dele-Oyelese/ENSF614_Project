@@ -1,9 +1,12 @@
 package com.movie.moviebackend.model;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.Month;
 
 @Entity
 @Table(name ="user")
@@ -21,6 +24,9 @@ public class RegisteredUser {
     private String address;
     private String email;
 
+    @JsonFormat(pattern="yyyy-MM-dd")
+    private LocalDate regDate;
+
 
 
     private String password;
@@ -37,6 +43,7 @@ public class RegisteredUser {
         this.creditNum=creditNum;
         this.email=email;
         this.password = password;
+        this.regDate = LocalDate.now();
     }
     public RegisteredUser(String name, String address, int creditNum, String email, String password ){
         this.address=address;
@@ -44,6 +51,16 @@ public class RegisteredUser {
         this.creditNum=creditNum;
         this.email=email;
         this.password = password;
+        this.regDate = LocalDate.now();
+    }
+
+    public RegisteredUser(String name, String address, int creditNum, String email, String password, LocalDate regDate ){
+        this.address=address;
+        this.name =name;
+        this.creditNum=creditNum;
+        this.email=email;
+        this.password = password;
+        this.regDate = regDate;
     }
 
     public Long getId() {

@@ -28,7 +28,7 @@ public class EntityConfig {
                 RegisteredUser user2= new RegisteredUser("Andrew", "Airdire", 1212231, "Andrew@Daly.com", "abcd");
                 RegisteredUser user3= new RegisteredUser("Dhruvi", "Crowfoot", 44423, "Dhruvi@Daly.com", "bhdft");
                 RegisteredUser user4= new RegisteredUser("Ryan", "Okotoks", 121231, "Ryan@Daly.com","lopsrtgy");
-                RegisteredUser user5= new RegisteredUser("Dele", "WestBrook", 7787, "Dele@Daly.com","kskhdp");
+                RegisteredUser user5= new RegisteredUser("Dele", "WestBrook", 7787, "Dele@Daly.com","kskhdp", LocalDate.of(1990,Month.JANUARY,5));
 
                 userRepo.saveAll(List.of(user1,user2,user3,user4,user5));
 
