@@ -8,6 +8,7 @@ import LogIn from './components/pages/LogIn';
 import CancelTicket from './components/pages/CancelTicket';
 import Seating from './components/Seating';
 import Payment from './components/pages/Payment';
+import ContactUs from './components/pages/ContactUs';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
           <Route path='/cancelticket' element={<CancelTicket />} />
           <Route path='/seating' element={<Seating />} />
           <Route path='/payment' element={<Payment />} />
+          <Route path='/contactus' element={<ContactUs />} />
           
           
         </Routes>
