@@ -6,7 +6,6 @@ function AllMovies() {
     const [movie, setMovie] = useState([])
     const [filtered, setFiltered] = useState([])
     const [val, setVal] = useState('')
-    const [search, setSearch] = React.useState('')
     let navigate = useNavigate();
 
     React.useEffect(() => {
@@ -22,6 +21,7 @@ function AllMovies() {
         setFiltered(movie.filter(item => {
             return item.title.toLowerCase() === val.toLowerCase();
         }))
+        setVal('');
     }
 
     const reset = (e) => {
@@ -32,8 +32,6 @@ function AllMovies() {
         navigate('/login');
     }
 
-
-
     return (
 
         <div className='movie'>
@@ -43,15 +41,15 @@ function AllMovies() {
                 <button onClick={reset} className="btn btn-dark" type="button">Show All</button>
 
             </div>
-
+            
             {filtered.length === 0 ?
-                <ul>
+                <ul>                    
                     {Array.isArray(movie)
                         ? movie.map(item => {
                             return (
                                 <><p>name = {item.title} </p>
-                                    <img src={item.title + ".jpg"} width="200" length="200" />
-                                    <p>showTime = {item.showTime} </p>
+                                    <img src={item.title + ".jpg"} width="200" length="200" />                                    
+                                    <button onClick={handleClick} type="button" className="btn btn-dark">{item.showTime}</button>
                                 </>)
                         })
                         : null}
@@ -67,15 +65,10 @@ function AllMovies() {
                                 </>)
                         })
                         : null}
-                </ul>
+                </ul>                
 
             }
-
-
-
-
         </div>
-
     );
 }
 
