@@ -10,19 +10,30 @@ function Payment(){
     const [password, setpassword] = useState("");
     const [email, setemail] = useState("");
     const [creditcard, setcreditcard] = useState("");
+    const [movie, setMovie] = React.useState('')
+
+    React.useEffect (() => {
+        setMovie(localStorage.getItem("ticketItems"))
+    },[])
+
+    const handleClick = (e) => {
+        console.log(name)
+    }
 
     return(
         <>
         {/* @PutMapping("api/v1/boxOffice/purchase/{ticketId}/movie/{movieId}/seat/{seatId}") */}
 
         <div className="movie">
-
-            <form onSubmit={handleSubmit}>
+            <div>
+                <h2> Movie: {movie.title}</h2>
+            </div>
+            <form>
                 <div className="form-group">
-                    <label>Name: will be your username</label>
+                    <label >Name: will be your username</label>
                     <input
+                        defaultValue={localStorage.getItem("email")}
                         type="text"
-                        value={name}
                         onChange={(e) => setname(e.target.value)}
                         className="form-control"
                         placeholder="Enter Your Name, e.g.: John"
@@ -54,7 +65,7 @@ function Payment(){
                     <label>Email</label>
                     <input
                         type="text"
-                        value={email}
+                        defaultValue={localStorage.getItem("email")}
                         onChange={(e) => setemail(e.target.value)}
                         className="form-control"
                         placeholder="Enter your email: e.g john.smith@gmail.com"
