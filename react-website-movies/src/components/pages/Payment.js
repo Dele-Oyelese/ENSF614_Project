@@ -11,7 +11,7 @@ function Payment() {
     const [creditcard, setcreditcard] = useState("");
     const [user, setUser] = useState([]);
     const [ticketId, setticketId] = useState(1);
-    const [flag, setFlag] = useState('');
+    const [flag, setFlag] = useState(1);
 
     useEffect(() => {
         const url = "http://localhost:8080/api/v1/user/Email/".concat(localStorage.getItem("email"));    
@@ -36,14 +36,10 @@ function Payment() {
         e.preventDefault();
         const movieID = localStorage.getItem("id");
         const seatID = localStorage.getItem("seatid");
-
+        
         if (localStorage.getItem("email") == null) {
 
             setFlag(0);
-            
-        } else {
-
-            setFlag(1);
             
         }
 
