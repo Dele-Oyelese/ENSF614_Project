@@ -1,9 +1,9 @@
-package com.movie.moviebackend.model;
+package com.movie.moviebackend.extraCode;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.movie.moviebackend.model.Movie;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;

@@ -1,5 +1,6 @@
 package com.movie.moviebackend.config;
 
+import com.movie.moviebackend.extraCode.SeatRepo;
 import com.movie.moviebackend.model.*;
 import com.movie.moviebackend.repository.*;
 import org.springframework.boot.CommandLineRunner;
@@ -8,9 +9,7 @@ import org.springframework.context.annotation.Configuration;
 
 import java.time.LocalDate;
 import java.time.Month;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 
 @Configuration
@@ -71,10 +70,10 @@ public class EntityConfig {
 
 
 //                BoxOffice b1 = new BoxOffice(new TransactionKey((long)1,(long)1),ticket1,movie1);
-////
+//                BoxOffice b2 = new BoxOffice(new TransactionKey((long)2,(long)2),ticket2,movie1);
 ////                new TransactionKey(1L,1L),
 //
-//                boxOfficeRepo.saveAll(List.of(b1));
+//                boxOfficeRepo.saveAll(List.of(b1,b2));
 
 
 

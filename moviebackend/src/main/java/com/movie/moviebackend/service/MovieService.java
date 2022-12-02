@@ -11,11 +11,14 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+//Service class to create functionality to controller Class
 @Service
 public class MovieService {
 
+    //Create athe Movie Repositry for services
     private final MovieRepo movieRepo;
 
+    //Constructor to and assign repository
     @Autowired
     public MovieService(MovieRepo movieRepo)
     {
@@ -56,6 +59,7 @@ public class MovieService {
         }
     }
 
+    //Switch availabilty to unavailable when purchased
     @Transactional
     public void purchaseSeat(Long id, int seatNum) {
 
@@ -104,7 +108,7 @@ public class MovieService {
 
         }
     }
-
+    //Switch availabilty to available when cancelled
     @Transactional
     public void cancelSeat(Long id, int seatNum) {
 
@@ -178,6 +182,7 @@ public class MovieService {
         }
     }
 
+    //get the movie by title
     public Movie getMovieByTitle(String title) {
         Optional<Movie> movieTile = movieRepo.findMovieByTitle(title);
         if (!movieTile.isPresent()) {

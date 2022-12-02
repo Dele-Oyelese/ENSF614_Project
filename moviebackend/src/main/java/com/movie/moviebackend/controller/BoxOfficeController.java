@@ -1,61 +1,60 @@
 package com.movie.moviebackend.controller;
 
-import com.fasterxml.jackson.annotation.JsonView;
+
 import com.movie.moviebackend.model.BoxOffice;
 import com.movie.moviebackend.service.BoxOfficeService;
-import com.movie.moviebackend.service.MovieService;
-import com.movie.moviebackend.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.nio.file.Path;
 import java.util.List;
 
+//Add contoller and API end point for BoxOffice Objects. Enable CrossOrigin
 @RestController
 @RequestMapping(path ="api/v1/boxOffice")
 @CrossOrigin
 public class BoxOfficeController {
 
-    private final MovieService movieService;
-    private final TicketService ticketService;
+    //declare a boxOffice service object as final
     private final BoxOfficeService boxOfficeService;
 
+    //Set the BoxOffice contoller to have service objecy
     @Autowired
-    public BoxOfficeController(MovieService movieService,TicketService ticketService, BoxOfficeService boxOfficeService){
+    public BoxOfficeController(BoxOfficeService boxOfficeService){
         this.boxOfficeService =boxOfficeService;
-        this.movieService = movieService;
-        this.ticketService =ticketService;
-    }
 
+    }
+//Set mapping to get all boxOffice Objects
     @GetMapping
     public List<BoxOffice> getAllBoxOffice(){return boxOfficeService.getAllBoxOffice();}
 
-
-    @GetMapping("/get/{ticketId}/movie/{movieId}")
+//Set mapping to get the ticket information and its boxOffice info
+    @GetMapping("/get/{ticketId}")
     public BoxOffice getTicket(
-            @PathVariable Long movieId,
             @PathVariable Long ticketId
     ){
-        return boxOfficeService.getOneTicket(ticketId,movieId);
+        return boxOfficeService.getOneTicket(ticketId);
     }
 
-    @PutMapping("/purchase/{ticketId}/movie/{movieId}/seat/{seatId}")
+    //Put mapping for purchasing a ticket with movie Id and Seat Id
+    @PutMapping("/purchase/{ticketId}/movie/{movieId}/seat/{seatId}/ru/{flag}")
     public void purchaseTicket(
             @PathVariable Long movieId,
             @PathVariable Long ticketId,
-            @PathVariable int seatId
-
+            @PathVariable int seatId,
+            @PathVariable int flag
     ){
-        boxOfficeService.purchaseTicketForMovie(ticketId,movieId,seatId);
-
+        boxOfficeService.purchaseTicketForMovie(ticketId,movieId,seatId,flag);
     }
+
+
+
 
     @PutMapping("/cancel/{ticketId}")
     public void cancelTicket(
-
             @PathVariable Long ticketId
     ){
         boxOfficeService.cancelTicketForMovie(ticketId);
-
     }
 
 }

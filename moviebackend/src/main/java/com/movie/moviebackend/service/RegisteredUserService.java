@@ -10,20 +10,23 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+//Service class to create functionality to controller Class
 @Service
 public class RegisteredUserService {
-
+// set a repo variable
     private final RegisteredUserRepo registeredUserRepo;
 
+    //constructor to initiate repo object
     @Autowired
     public RegisteredUserService(RegisteredUserRepo registeredUserRepo) {
         this.registeredUserRepo = registeredUserRepo;
     }
-
+//Get all registered users in the DB
     public List<RegisteredUser> getAllRegisteredUsers() {
         return registeredUserRepo.findAll();
     }
 
+    // add a Registered user to Database and check if the email is taken
     public void addRegisteredUser(RegisteredUser registeredUser) {
 
         Optional<RegisteredUser> userEmail = registeredUserRepo.findUserByEmail(registeredUser.getEmail());
@@ -35,7 +38,7 @@ public class RegisteredUserService {
 
     }
 
-
+// Update a users information
     @Transactional
     public void updateUser(Long userId, String name, String email) {
 
@@ -60,7 +63,7 @@ public class RegisteredUserService {
 
     }
 
-
+// Get a user information based on their ID
     public RegisteredUser getUserById(Long userID) {
         Optional<RegisteredUser> userById = registeredUserRepo.findById(userID);
         if (!userById.isPresent()) {
@@ -68,14 +71,14 @@ public class RegisteredUserService {
         }
         return userById.get();
     }
-
-        public RegisteredUser getUserByEmail(String email) {
-        Optional<RegisteredUser> userByEmail = registeredUserRepo.findUserByEmail(email);
-        if (!userByEmail.isPresent()) {
-            throw new IllegalStateException("User does not exist");
-        }
-        return userByEmail.get();
+// Get user information based on email. involves an existance check.
+    public RegisteredUser getUserByEmail(String email) {
+    Optional<RegisteredUser> userByEmail = registeredUserRepo.findUserByEmail(email);
+    if (!userByEmail.isPresent()) {
+        throw new IllegalStateException("User does not exist");
     }
+    return userByEmail.get();
+}
 
 
 

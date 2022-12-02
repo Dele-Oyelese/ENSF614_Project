@@ -8,9 +8,12 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.Month;
 
+//Create registered entity table
 @Entity
 @Table(name ="user")
 public class RegisteredUser {
+
+    //Auto Generate ID
     @Id
     @SequenceGenerator(name = "RU_sequence",
             sequenceName = "RU_sequence",
@@ -20,22 +23,23 @@ public class RegisteredUser {
             generator = "RU_sequence"
     )
     private Long id;
+
+    // Initiate String Variables
     private String name;
     private String address;
     private String email;
 
+    //Initate Registration date using LocalDate to JSON
     @JsonFormat(pattern="yyyy-MM-dd")
     private LocalDate regDate;
-
-
-
+// Add Password and CreditNum
     private String password;
     private int creditNum;
 
-
+// Default Constructor
     RegisteredUser(){
     }
-
+// Constructor with ID
     public RegisteredUser(Long id, String name, String address, int creditNum,  String email, String password ){
         this.id=id;
         this.address=address;
@@ -45,6 +49,8 @@ public class RegisteredUser {
         this.password = password;
         this.regDate = LocalDate.now();
     }
+
+    //Constructor without id and no reg date set to current date
     public RegisteredUser(String name, String address, int creditNum, String email, String password ){
         this.address=address;
         this.name =name;
@@ -53,7 +59,7 @@ public class RegisteredUser {
         this.password = password;
         this.regDate = LocalDate.now();
     }
-
+// Constructor no id With Registration date
     public RegisteredUser(String name, String address, int creditNum, String email, String password, LocalDate regDate ){
         this.address=address;
         this.name =name;
@@ -63,6 +69,7 @@ public class RegisteredUser {
         this.regDate = regDate;
     }
 
+    //Getters and setters
     public Long getId() {
         return id;
     }

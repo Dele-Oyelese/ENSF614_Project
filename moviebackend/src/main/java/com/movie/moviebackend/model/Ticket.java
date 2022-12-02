@@ -8,10 +8,11 @@ import javax.persistence.*;
 import javax.swing.*;
 import java.util.Set;
 
+//Create Ticket as a entity class and a table
 @Entity
 @Table(name = "ticket")
 public class Ticket {
-
+//Auto Generate ticket sequence
     @Id
     @SequenceGenerator(name = "ticket_sequence",
             sequenceName = "ticket_sequence",
@@ -27,14 +28,14 @@ public class Ticket {
     private String movieName;
     private Long mId;
 
+    // Map one tickey yo many BoxOffices
     @OneToMany(mappedBy = "ticket")
-
     @JsonIgnoreProperties("ticket")
+    private Set<BoxOffice> boxOffices;
 
-    Set<BoxOffice> boxOffices;
-
+    //Default Constructor
     Ticket(){}
-
+//Ticket constructor with ID
     public Ticket(Long id, int seatNum, Double price, boolean buyerStatus, String movieName){
 
         this.id =id;
@@ -44,21 +45,23 @@ public class Ticket {
         this.movieName =movieName;
 
     }
-
+//Ticket Constructor no ID
     public Ticket(int seatNum, Double price, boolean buyerStatus, String movieName){
         this.buyerStatus =buyerStatus;
         this.seatNum = seatNum;
         this.price =price;
         this.movieName =movieName;
     }
-
+// Add movies to boxOffice Set
     public void addMovie(BoxOffice b) {
         boxOffices.add(b);
     }
-
+//Remove Movies from boxOffice Set
     public void removeMovie(BoxOffice r){
         boxOffices.remove(r);
     }
+
+    // Getters and Setters
 
     public Long getId() {
         return id;
@@ -106,11 +109,6 @@ public class Ticket {
 
     public void setBoxOffices(Set<BoxOffice> boxOffices) {
         this.boxOffices = boxOffices;
-    }
-
-    @Override
-    public String toString() {
-        return "Student [id=" + id + ", name=" + movieName + "]";
     }
 
     public Long getmId() {

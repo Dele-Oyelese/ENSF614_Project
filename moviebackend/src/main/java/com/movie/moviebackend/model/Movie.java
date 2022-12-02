@@ -11,9 +11,14 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
+
+// Create a Movie Entity class table
 @Entity
 @Table(name = "movie")
 public class Movie  {
+
+
+//    Auto Generate ID of movie
     @Id
     @SequenceGenerator(name = "movie_sequence",
             sequenceName = "movie_sequence",
@@ -24,58 +29,39 @@ public class Movie  {
     )
     @JsonView(MovieView.id.class)
     private Long id;
-
+// add a view for movie title
     @JsonView(MovieView.CoreData.class)
     private String title;
-    private String showTime;
 
+//    Add showtimes
+    private String showTime;
+// Movie to a box office table ignoring the movie self referencing
     @OneToMany(mappedBy = "movie")
-    // @JsonManagedReference
-    // @JsonIgnore
     @JsonIgnoreProperties("movie")
     @JsonView(MovieView.FullData.class)
-    Set<BoxOffice> boxOffices;
+    private Set<BoxOffice> boxOffices;
 
 
-//
-//    @OneToMany(mappedBy = "movie")
-//    // @JsonManagedReference
-//    // @JsonIgnore
-//    @JsonView(MovieView.FullData.class)
-//    @JsonIgnoreProperties("movie")
-//    Set<Seat> seats;
-
-    /*
-    Need to implement a @ManyToMany hashset if we include
-    multiple theaters with the same movie
-     */
-
+// Initialize all seats availability to true
     private boolean seat1 = true;
-
     private boolean seat2 = true;;
-
     private boolean seat3= true;
-
     private boolean seat4= true;
-
     private boolean seat5= true;
-
     private boolean seat6= true;
-
     private boolean seat7= true;
-
     private boolean seat8 = true;
-
     private boolean seat9 = true;
-
     private boolean seat10 = true;
 
 
 
-
+//Ability to add a ticket to the Movies Box Office
     public void addTicket(BoxOffice b){boxOffices.add(b);}
+//Ability to remove a ticket from movies boxOffice
     public void removeTicket(BoxOffice b){boxOffices.remove(b);}
 
+//Override equals for title comparison
     @Override
     public boolean equals(Object that){
         if(this.getClass() != that.getClass()){
@@ -86,10 +72,10 @@ public class Movie  {
         return (this.getId() == m.getId() && this.getTitle().equals(m.getTitle()));
 
     }
-
+//Default constructor
     public Movie(){
     }
-
+// Constructor with ID Title and Showtime
     public Movie(Long id, String title, String showTime)
     {
         this.id = id;
@@ -98,7 +84,7 @@ public class Movie  {
 
 
     }
-
+//Constructor without ID
     public Movie(String title, String showTime)
     {
         this.title = title;

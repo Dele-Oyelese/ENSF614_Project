@@ -1,4 +1,4 @@
-package com.movie.moviebackend.model;
+package com.movie.moviebackend.extraCode;
 
 import javax.persistence.Column;
 import java.io.Serializable;

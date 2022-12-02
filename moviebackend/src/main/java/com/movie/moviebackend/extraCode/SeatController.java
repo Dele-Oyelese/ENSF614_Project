@@ -1,11 +1,6 @@
-package com.movie.moviebackend.controller;
+package com.movie.moviebackend.extraCode;
 
-import com.movie.moviebackend.model.Seat;
-import com.movie.moviebackend.service.SeatService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping(path = "api/v1/seat")
