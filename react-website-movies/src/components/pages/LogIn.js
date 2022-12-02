@@ -8,7 +8,6 @@ function LogIn(){
     const[email,setEmail] = React.useState('')
     const[check,setCheck] = React.useState('')
     const[validate,setValidate] = React.useState(false)
-    const getEmail = localStorage.getItem("email")
     let navigate = useNavigate();
 
     const SubmitLogin = (e) => {
@@ -18,6 +17,7 @@ function LogIn(){
     }
 
     const handleClick = (e) => {
+      setEmail('');
       navigate('/allmovies');
   }
 
@@ -27,7 +27,6 @@ function LogIn(){
         .then((result)=>{
           if(result.status !== 500  && (result.email === email ) && result.password === password){
             localStorage.setItem("email",result.email)
-            const getEmail = localStorage.getItem("email")
             setValidate(true)
             navigate('/allmovies');
           }

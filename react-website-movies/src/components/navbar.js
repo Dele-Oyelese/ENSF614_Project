@@ -20,9 +20,9 @@ function Navbar() {
                 <li className='nav-item'>
                     <Link to='/register' className='nav-links' > Register </Link>
                 </li>
-                <li className='nav-item'>
+                {/* <li className='nav-item'>
                     <Link to='/allmovies' className='nav-links' > All Movies </Link>
-                </li>
+                </li> */}
 
                 <li className='nav-item'>
                     <Link to='/login' className='nav-links' > Log In </Link>

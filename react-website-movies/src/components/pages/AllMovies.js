@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react';
 function AllMovies() {
     const [movie, setMovie] = useState([])
     const [filtered, setFiltered] = useState([])
-    const [val, setVal] = useState('')
+    const [val, setVal] = useState('')    
     let navigate = useNavigate();
 
     React.useEffect(() => {
@@ -28,8 +28,10 @@ function AllMovies() {
         setFiltered([])
     }
 
-    const handleClick = (e) => {
-        navigate('/login');
+    const handleClick= (showTime, title, id )  => {   
+        const ticketItems = {id: id, title:title, showTime:showTime}
+        localStorage.setItem('ticketItems', JSON.stringify({ticketItems}));
+        navigate('/seating');
     }
 
     return (
@@ -41,15 +43,19 @@ function AllMovies() {
                 <button onClick={reset} className="btn btn-dark" type="button">Show All</button>
 
             </div>
+
             
+
             {filtered.length === 0 ?
-                <ul>                    
+                <ul>
                     {Array.isArray(movie)
                         ? movie.map(item => {
                             return (
-                                <><p>name = {item.title} </p>
-                                    <img src={item.title + ".jpg"} width="200" length="200" />                                    
-                                    <button onClick={handleClick} type="button" className="btn btn-dark">{item.showTime}</button>
+                                <>
+                                <p>{item.title} </p>                                    
+                                <img src={item.title + ".jpg"} width="200" length="200" />
+                                <br></br>
+                                <button onClick={() => handleClick(item.showTime, item.title, item.id)} type="button" className="btn btn-dark">{item.showTime}</button>
                                 </>)
                         })
                         : null}
@@ -65,7 +71,7 @@ function AllMovies() {
                                 </>)
                         })
                         : null}
-                </ul>                
+                </ul>
 
             }
         </div>

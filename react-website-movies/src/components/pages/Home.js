@@ -8,7 +8,7 @@ function Home(){
         <>       
 
         
-        <Seating/>
+        {/* <Seating/> */}
         </>
     );
 }
