@@ -1,90 +1,64 @@
 package com.movie.moviebackend.model;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 
+
+
+
+
+
+
+@Data
+@AllArgsConstructor
+
+@ToString
 @Entity
-@Table(name ="seat")
 public class Seat {
 
-    @Id
-    @SequenceGenerator(name = "seat_sequence",
-            sequenceName = "seat_sequence",
-            allocationSize = 1)
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "seat_sequence"
-    )
-    private Long id;
 
+    @EmbeddedId
+    private SeatKey id = new SeatKey();
 
+    public SeatKey getId(){return id;}
 
-    /* In the following format: C01, E28, A12, etc. */
-    private String seatNum;
-
-    /* Price of the movie seat */
-    private double price;
-    @Transient
-    private boolean available;
+    public void setId(SeatKey id) {
+        this.id = id;
+    }
 
     @ManyToOne
     @MapsId("movieId")
-    @JoinColumn(name = "movie_id", nullable = false)
-    // @JsonBackReference
-    @JsonIgnoreProperties("seat")
+    @JoinColumn(name = "movieId",nullable = false)
+    @JsonIgnoreProperties("seats")
     Movie movie;
+    private int seatNum;
+    private boolean availability;
 
 
+    public Seat(){}
 
-    public Seat(){
-        this.available = true;
-    }
-    public Seat(Long id, Long movieId, String seatNum, double price){
-        this.id = id;
-        this.available = true;
-    }
-
-    public Seat( String seatNum, double price, Movie movie)
-    {
-        this.movie =movie;
-        this.seatNum = seatNum;
-        this.price = price;
-
+    public Seat(SeatKey id,  Movie movie){
+        this.id =id;
+        this.movie = movie;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public Seat( Movie movie){
+        this.movie = movie;
     }
 
 
-
-    public String getSeatNum() {
-        return seatNum;
+    public Movie getMovie() {
+        return movie;
     }
 
-    public void setSeatNum(String seatNum) {
-        this.seatNum = seatNum;
+    public void setMovie(Movie movie) {
+        this.movie = movie;
     }
 
-    public double getPrice() {
-        return price;
-    }
 
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public boolean isAvailable() {
-        return available;
-    }
-
-    public void setAvailable(boolean available) {
-        this.available = available;
-    }
 }

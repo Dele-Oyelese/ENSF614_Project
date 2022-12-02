@@ -21,7 +21,7 @@ public class EntityConfig {
 
         @Bean
         CommandLineRunner commandLineRunner3(RegisteredUserRepo userRepo, TicketRepo ticketRepo, MovieRepo movieRepo,
-                                             BoxOfficeRepo boxOfficeRepo){
+                                             BoxOfficeRepo boxOfficeRepo, SeatRepo seatRepo){
             return args -> {
 
                 RegisteredUser user1= new RegisteredUser("John", "Uni Ave", 1231, "John@Daly.com", "123er5");
@@ -59,11 +59,8 @@ public class EntityConfig {
 
 
 
-//                Seat seat1 = new Seat("1", 20,movie1);
-////                Set<Seat> seats = new HashSet<>();
-////                seats.add(seat1);
-//                movie1.getSeats().add(seat1);
-
+//                Seat s2 = new Seat(new SeatKey((long)3), movie1);
+//                seatRepo.saveAll(List.of(s2));
 
                 movieRepo.saveAll(List.of(movie1,movie2,movie3,movie4,movie5, movie6,movie7,movie8,movie9,movie10,movie11, movie12,movie13,movie14,movie15));
 
@@ -71,11 +68,13 @@ public class EntityConfig {
 
 
 
-//                BoxOffice b1 = new BoxOffice(new TransactionKey((long)1,(long)1),ticket1,movie1);
-////
-////                new TransactionKey(1L,1L),
+
+
+                BoxOffice b1 = new BoxOffice(new TransactionKey((long)1,(long)1),ticket1,movie1);
 //
-//                boxOfficeRepo.saveAll(List.of(b1));
+//                new TransactionKey(1L,1L),
+
+                boxOfficeRepo.saveAll(List.of(b1));
 
 
 

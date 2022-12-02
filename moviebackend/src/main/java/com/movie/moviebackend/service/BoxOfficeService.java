@@ -19,15 +19,17 @@ public class BoxOfficeService {
     private final BoxOfficeRepo boxOfficeRepo;
     private final TicketRepo ticketRepo;
     private final MovieRepo movieRepo;
+    private final MovieService movieService;
 
 
 
     @Autowired
-    public BoxOfficeService( BoxOfficeRepo boxOfficeRepo, TicketRepo ticketRepo, MovieRepo movieRepo){
+    public BoxOfficeService( BoxOfficeRepo boxOfficeRepo, TicketRepo ticketRepo, MovieRepo movieRepo, MovieService movieService){
 
         this.boxOfficeRepo =boxOfficeRepo;
         this.ticketRepo = ticketRepo;
         this. movieRepo = movieRepo;
+        this.movieService = movieService;
     }
 
 
@@ -59,13 +61,49 @@ public class BoxOfficeService {
     }
 
 
-    public void purchaseTicketForMovie (Long ticketId, Long movieID){
+    public void purchaseTicketForMovie (Long ticketId, Long movieID, int seatId){
 
         Movie movie = movieRepo.findById(movieID).get();
         Ticket ticket = ticketRepo.findById(ticketId).get();
 
         if (ticket.getMovieName() == null) {
             ticket.setMovieName(movie.getTitle());
+        }
+
+
+        switch(seatId){
+            case 1:
+                movie.setSeat1(false);
+                break;
+            case 2:
+                movie.setSeat2(false);
+                break;
+            case 3:
+                movie.setSeat3(false);
+                break;
+            case 4:
+                movie.setSeat4(false);
+                break;
+            case 5:
+                movie.setSeat5(false);
+                break;
+            case 6:
+                movie.setSeat6(false);
+                break;
+            case 7:
+                movie.setSeat7(false);
+                break;
+            case 8:
+                movie.setSeat8(false);
+                break;
+            case 9:
+                movie.setSeat9(false);
+                break;
+            case 10:
+                movie.setSeat10(false);
+                break;
+            default:
+                throw new IllegalStateException("Seat with " + seatId + " does not exist.");
         }
 
         BoxOffice b = new BoxOffice(ticket,movie);

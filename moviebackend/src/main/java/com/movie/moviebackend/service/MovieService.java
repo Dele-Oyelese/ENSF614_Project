@@ -28,6 +28,7 @@ public class MovieService {
         return movieRepo.findAll();
     }
 
+
     /* Add a new movie to the database */
     public void addNewMovie(Movie movie)
     {
@@ -52,6 +53,103 @@ public class MovieService {
         else
         {
             movieRepo.deleteById(id);
+        }
+    }
+
+    @Transactional
+    public void purchaseSeat(Long id, int seatNum) {
+
+        boolean exists = movieRepo.existsById(id);
+        if (!exists) {
+            throw new IllegalStateException("Movie with id " + id + " does not exist.");
+        } else {
+            Movie movie = movieRepo.findById(id).get();
+
+
+            switch(seatNum){
+                case 1:
+                    movie.setSeat1(false);
+                    break;
+                case 2:
+                    movie.setSeat2(false);
+                    break;
+                case 3:
+                    movie.setSeat3(false);
+                    break;
+                case 4:
+                    movie.setSeat4(false);
+                    break;
+                case 5:
+                    movie.setSeat5(false);
+                    break;
+                case 6:
+                    movie.setSeat6(false);
+                    break;
+                case 7:
+                    movie.setSeat7(false);
+                    break;
+                case 8:
+                    movie.setSeat8(false);
+                    break;
+                case 9:
+                    movie.setSeat9(false);
+                    break;
+                case 10:
+                    movie.setSeat10(false);
+                    break;
+                default:
+                    throw new IllegalStateException("Seat with " + seatNum + " does not exist.");
+            }
+
+
+        }
+    }
+
+    @Transactional
+    public void cancelSeat(Long id, int seatNum) {
+
+        boolean exists = movieRepo.existsById(id);
+        if (!exists) {
+            throw new IllegalStateException("Movie with id " + id + " does not exist.");
+        } else {
+            Movie movie = movieRepo.findById(id).get();
+
+            switch(seatNum){
+                case 1:
+                    movie.setSeat1(true);
+                    break;
+                case 2:
+                    movie.setSeat2(true);
+                    break;
+                case 3:
+                    movie.setSeat3(true);
+                    break;
+                case 4:
+                    movie.setSeat4(true);
+                    break;
+                case 5:
+                    movie.setSeat5(true);
+                    break;
+                case 6:
+                    movie.setSeat6(true);
+                    break;
+                case 7:
+                    movie.setSeat7(true);
+                    break;
+                case 8:
+                    movie.setSeat8(true);
+                    break;
+                case 9:
+                    movie.setSeat9(true);
+                    break;
+                case 10:
+                    movie.setSeat10(true);
+                    break;
+                default:
+                    throw new IllegalStateException("Seat " + seatNum + " does not exist.");
+            }
+
+
         }
     }
 

@@ -38,20 +38,25 @@ public class BoxOfficeController {
         return boxOfficeService.getOneTicket(ticketId,movieId);
     }
 
-    @PutMapping("/purchase/{ticketId}/movie/{movieId}")
+    @PutMapping("/purchase/{ticketId}/movie/{movieId}/seat/{seatId}")
     public void purchaseTicket(
             @PathVariable Long movieId,
-            @PathVariable Long ticketId
+            @PathVariable Long ticketId,
+            @PathVariable int seatId
+
     ){
-        boxOfficeService.purchaseTicketForMovie(ticketId,movieId);
+        boxOfficeService.purchaseTicketForMovie(ticketId,movieId,seatId);
+
     }
 
-    @PutMapping("/cancel/{ticketId}/movie/{movieId}")
+    @PutMapping("/cancel/{ticketId}/movie/{movieId}/seat/{seatId}")
     public void cancelTicket(
             @PathVariable Long movieId,
-            @PathVariable Long ticketId
+            @PathVariable Long ticketId,
+            @PathVariable int seatId
     ){
         boxOfficeService.cancelTicketForMovie(ticketId,movieId);
+        movieService.cancelSeat(movieId,seatId);
     }
 
 }
