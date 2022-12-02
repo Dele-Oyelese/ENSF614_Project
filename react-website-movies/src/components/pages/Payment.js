@@ -10,7 +10,8 @@ function Payment() {
     const [email, setemail] = useState("");
     const [creditcard, setcreditcard] = useState("");
     const [user, setUser] = useState([]);
-    const ticketId = 1;
+    const [ticketId, setticketId] = useState(1);
+    const [flag, setFlag] = useState('');
 
     useEffect(() => {
         const url = "http://localhost:8080/api/v1/user/Email/".concat(localStorage.getItem("email"));    
@@ -20,56 +21,42 @@ function Payment() {
             const json = await response.json();
             setUser(json);
             console.log(user);
+
           } catch (error) {
             console.log("error", error);
           }
         };    
         fetchData();
+        setticketId(ticketId+1);
+        console.log(ticketId);
+
     }, []);
 
     const purchaseTicket = (e) => {
         e.preventDefault();
         const movieID = localStorage.getItem("id");
-        const seatID = localStorage.getItem("seatID");
+        const seatID = localStorage.getItem("seatid");
 
-        if (localStorage.getItem("email") === null) {
+        if (localStorage.getItem("email") == null) {
 
-            const flag = 0;
+            setFlag(0);
             
         } else {
 
-            const flag = 1;
+            setFlag(1);
             
         }
 
         //t expects a 1 for registered User a 0 or anything else for a non registered user
-        const url = "api/v1/boxOffice/purchase/"+ ticketId + "/movie/" + movieID + "/seat/" + seatID +"/ru/" + flag;
-        ticketId++;
+  
+        const url = "http://localhost:8080/api/v1/boxOffice/purchase/"+ ticketId + "/movie/" + movieID + "/seat/" + seatID +"/ru/" + flag;
+        console.log(url)
+       
           
         fetch(url, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(course),
         })
-          .then((result) => {
-            if (result.ok) {
-              return result.json();
-            }
-            return result.json().then((result) => {
-              alert(result.message);
-              setcoursename("");
-              setPrereqname("");
-              throw new Error(result.error);
-            });
-          })
-          .then(() => {
-            alert("Prerequisite successfully added");
-            setcoursename("");
-            setPrereqname("");
-          })
-          .catch((error) =>
-            console.log(error)
-          );
 
     }
 
