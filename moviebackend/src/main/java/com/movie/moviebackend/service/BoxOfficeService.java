@@ -68,6 +68,7 @@ public class BoxOfficeService {
 
         if (ticket.getMovieName() == null) {
             ticket.setMovieName(movie.getTitle());
+            ticket.setmId(movie.getId());
         }
 
 
@@ -105,7 +106,7 @@ public class BoxOfficeService {
             default:
                 throw new IllegalStateException("Seat with " + seatId + " does not exist.");
         }
-
+        ticket.setSeatNum(seatId);
         BoxOffice b = new BoxOffice(ticket,movie);
         b.setMovie(movie);
         b.setTicket(ticket);
@@ -115,12 +116,13 @@ public class BoxOfficeService {
         boxOfficeRepo.save(b);
     }
 
-    public void cancelTicketForMovie (Long ticketId, Long movieID){
-
-        Movie movie = movieRepo.findById(movieID).get();
+    public void cancelTicketForMovie (Long ticketId){
         Ticket ticket = ticketRepo.findById(ticketId).get();
-
+        int seatNum = ticket.getSeatNum();
+        Long movieId = ticket.getmId();
+        Movie movie = movieRepo.findById(movieId).get();
         Set<BoxOffice> boxo = new HashSet<BoxOffice>();
+
 
 
         for(BoxOffice b:ticket.getBoxOffices()){
@@ -135,11 +137,14 @@ public class BoxOfficeService {
                 ticketFound = true;
                 boxOfficeRepo.delete(b);
                 ticket.setMovieName(null);
+                ticket.setmId(null);
             }
         }
         if(!ticketFound){
             throw new IllegalStateException("Ticket doesn't exist");
         }
+        movieService.cancelSeat(movieId,seatNum);
+
     }
 
 

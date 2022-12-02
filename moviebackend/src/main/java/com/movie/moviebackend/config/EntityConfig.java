@@ -32,12 +32,12 @@ public class EntityConfig {
 
                 userRepo.saveAll(List.of(user1,user2,user3,user4,user5));
 
-                Ticket ticket1 = new Ticket("1",10.00,true,null);
-                Ticket ticket2 = new Ticket("2",10.00,true,null);
-                Ticket ticket3 = new Ticket("3",10.00,true,null);
-                Ticket ticket4 = new Ticket("4",10.00,true,null);
-                Ticket ticket5 = new Ticket("5",10.00,true,null);
-                Ticket ticket6 = new Ticket("6",10.00,true,null);
+                Ticket ticket1 = new Ticket(0,10.00,true,null);
+                Ticket ticket2 = new Ticket(0,10.00,true,null);
+                Ticket ticket3 = new Ticket(0,10.00,true,null);
+                Ticket ticket4 = new Ticket(0,10.00,true,null);
+                Ticket ticket5 = new Ticket(0,10.00,true,null);
+                Ticket ticket6 = new Ticket(0,10.00,true,null);
 
                 ticketRepo.saveAll(List.of(ticket1,ticket2,ticket3,ticket4,ticket5,ticket6));
 
@@ -70,11 +70,11 @@ public class EntityConfig {
 
 
 
-                BoxOffice b1 = new BoxOffice(new TransactionKey((long)1,(long)1),ticket1,movie1);
+//                BoxOffice b1 = new BoxOffice(new TransactionKey((long)1,(long)1),ticket1,movie1);
+////
+////                new TransactionKey(1L,1L),
 //
-//                new TransactionKey(1L,1L),
-
-                boxOfficeRepo.saveAll(List.of(b1));
+//                boxOfficeRepo.saveAll(List.of(b1));
 
 
 

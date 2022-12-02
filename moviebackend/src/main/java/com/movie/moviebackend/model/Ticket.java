@@ -21,10 +21,11 @@ public class Ticket {
             generator = "ticket_sequence"
     )
     private Long id;
-    private String seatNum;
+    private int seatNum;
     private double price;
     private boolean buyerStatus;
     private String movieName;
+    private Long mId;
 
     @OneToMany(mappedBy = "ticket")
 
@@ -34,7 +35,7 @@ public class Ticket {
 
     Ticket(){}
 
-    public Ticket(Long id, String seatNum, Double price, boolean buyerStatus, String movieName){
+    public Ticket(Long id, int seatNum, Double price, boolean buyerStatus, String movieName){
 
         this.id =id;
         this.buyerStatus =buyerStatus;
@@ -44,7 +45,7 @@ public class Ticket {
 
     }
 
-    public Ticket(String seatNum, Double price, boolean buyerStatus, String movieName){
+    public Ticket(int seatNum, Double price, boolean buyerStatus, String movieName){
         this.buyerStatus =buyerStatus;
         this.seatNum = seatNum;
         this.price =price;
@@ -67,11 +68,11 @@ public class Ticket {
         this.id = id;
     }
 
-    public String getSeatNum() {
+    public int getSeatNum() {
         return seatNum;
     }
 
-    public void setSeatNum(String seatNum) {
+    public void setSeatNum(int seatNum) {
         this.seatNum = seatNum;
     }
 
@@ -112,5 +113,11 @@ public class Ticket {
         return "Student [id=" + id + ", name=" + movieName + "]";
     }
 
+    public Long getmId() {
+        return mId;
+    }
 
+    public void setmId(Long mId) {
+        this.mId = mId;
+    }
 }

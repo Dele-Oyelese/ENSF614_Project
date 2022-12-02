@@ -49,14 +49,13 @@ public class BoxOfficeController {
 
     }
 
-    @PutMapping("/cancel/{ticketId}/movie/{movieId}/seat/{seatId}")
+    @PutMapping("/cancel/{ticketId}")
     public void cancelTicket(
-            @PathVariable Long movieId,
-            @PathVariable Long ticketId,
-            @PathVariable int seatId
+
+            @PathVariable Long ticketId
     ){
-        boxOfficeService.cancelTicketForMovie(ticketId,movieId);
-        movieService.cancelSeat(movieId,seatId);
+        boxOfficeService.cancelTicketForMovie(ticketId);
+
     }
 
 }
