@@ -6,8 +6,7 @@ export const ContactUs = () => {
 
   const sendEmail = (e) => {
     e.preventDefault();
-
-    emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', form.current, 'YOUR_PUBLIC_KEY')
+    emailjs.sendForm('gmail', 'template_7woudlf', form.current, 'GE7vkWWcHkEMc_LhW')
       .then((result) => {
           console.log(result.text);
       }, (error) => {
@@ -21,6 +20,8 @@ export const ContactUs = () => {
       <input type="text" name="user_name" />
       <label>Email</label>
       <input type="email" name="user_email" />
+      <label>Subject</label>
+      <input type="subject" name="subject" />
       <label>Message</label>
       <textarea name="message" />
       <input type="submit" value="Send" />
