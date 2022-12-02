@@ -1,17 +1,25 @@
 import '../App.css'
-
+import { useNavigate } from 'react-router-dom';
 import './navbar.css';
 
-function Seating() {    
+function Seating() {
+    
+    let navigate = useNavigate();
+
+    const handleClick = (e) => {        
+        console.log(localStorage.getItem("email"))
+        console.log(localStorage.getItem("ticketItems"))
+        navigate('/payment');
+    }
 
     return (
         <>
         <div className='movie'>
-            <p> placeholder for seating page, move later</p>
+            
             <h1 > SCREEN </h1>
             <hr color='black'></hr>
 
-            <button type="button" class="btn-outline-success btn-lg seat">A</button>
+            <button type="button" onClick={handleClick} class="btn-outline-success btn-lg seat">A</button>
             <button type="button" class="btn-outline-success btn-lg seat">B</button>
             <button type="button" class="btn-outline-success btn-lg seat">C</button>
             <button type="button" class="btn-outline-success btn-lg seat">D</button>

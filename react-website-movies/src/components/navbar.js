@@ -21,7 +21,7 @@ function Navbar() {
                     <Link to='/register' className='nav-links' > Register </Link>
                 </li>
                 <li className='nav-item'>
-                    <Link to='/allmovies' className='nav-links' > All Movies </Link>
+                    <Link to='/ContactUs' className='nav-links' > Contact Us </Link>
                 </li>
 
                 <li className='nav-item'>
