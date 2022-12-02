@@ -22,6 +22,7 @@ function AllMovies() {
         setFiltered(movie.filter(item => {
             return item.title.toLowerCase() === val.toLowerCase();
         }))
+        setVal('');
     }
 
     const reset = (e) => {
@@ -32,8 +33,6 @@ function AllMovies() {
         navigate('/login');
     }
 
-
-
     return (
 
         <div className='movie'>
@@ -43,9 +42,9 @@ function AllMovies() {
                 <button onClick={reset} className="btn btn-dark" type="button">Show All</button>
 
             </div>
-
+            
             {filtered.length === 0 ?
-                <ul>
+                <ul>                    
                     {Array.isArray(movie)
                         ? movie.map(item => {
                             return (
@@ -67,15 +66,10 @@ function AllMovies() {
                                 </>)
                         })
                         : null}
-                </ul>
+                </ul>                
 
             }
-
-
-
-
         </div>
-
     );
 }
 
