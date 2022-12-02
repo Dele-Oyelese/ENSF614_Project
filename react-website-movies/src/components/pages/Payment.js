@@ -14,20 +14,20 @@ function Payment() {
     const [flag, setFlag] = useState(1);
 
     useEffect(() => {
-        const url = "http://localhost:8080/api/v1/user/Email/".concat(localStorage.getItem("email"));    
+        const url = "http://localhost:8080/api/v1/user/Email/".concat(localStorage.getItem("email"));
         const fetchData = async () => {
-          try {
-            const response = await fetch(url);
-            const json = await response.json();
-            setUser(json);
-            console.log(user);
+            try {
+                const response = await fetch(url);
+                const json = await response.json();
+                setUser(json);
+                console.log(user);
 
-          } catch (error) {
-            console.log("error", error);
-          }
-        };    
+            } catch (error) {
+                console.log("error", error);
+            }
+        };
         fetchData();
-        setticketId(ticketId+1);
+        setticketId(ticketId + 1);
         console.log(ticketId);
 
     }, []);
@@ -36,22 +36,22 @@ function Payment() {
         e.preventDefault();
         const movieID = localStorage.getItem("id");
         const seatID = localStorage.getItem("seatid");
-        
+
         if (localStorage.getItem("email") == null) {
 
             setFlag(0);
-            
+
         }
 
         //t expects a 1 for registered User a 0 or anything else for a non registered user
-  
-        const url = "http://localhost:8080/api/v1/boxOffice/purchase/"+ ticketId + "/movie/" + movieID + "/seat/" + seatID +"/ru/" + flag;
+
+        const url = "http://localhost:8080/api/v1/boxOffice/purchase/" + ticketId + "/movie/" + movieID + "/seat/" + seatID + "/ru/" + flag;
         console.log(url)
-       
-          
+
+
         fetch(url, {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
         })
 
     }
