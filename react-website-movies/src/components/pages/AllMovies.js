@@ -29,8 +29,9 @@ function AllMovies() {
     }
 
     const handleClick= (showTime, title, id )  => {   
-        const ticketItems = {id: id, title:title, showTime:showTime}
-        localStorage.setItem('ticketItems', JSON.stringify({ticketItems}));
+        localStorage.setItem("id",id)
+        localStorage.setItem("title",title)
+        localStorage.setItem("showTime", showTime)
         navigate('/seating');
     }
 

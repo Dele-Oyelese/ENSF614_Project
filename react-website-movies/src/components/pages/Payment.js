@@ -1,95 +1,147 @@
 import '../../App.css';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-function Payment(){
+function Payment() {
 
     const [name, setname] = useState("");
     const [address, setaddress] = useState("");
-    const [password, setpassword] = useState("");
     const [email, setemail] = useState("");
     const [creditcard, setcreditcard] = useState("");
-    const [movie, setMovie] = React.useState('')
+    const [user, setUser] = useState([]);
+    const ticketId = 1;
 
-    React.useEffect (() => {
-        setMovie(localStorage.getItem("ticketItems"))
-    },[])
+    useEffect(() => {
+        const url = "http://localhost:8080/api/v1/user/Email/".concat(localStorage.getItem("email"));    
+        const fetchData = async () => {
+          try {
+            const response = await fetch(url);
+            const json = await response.json();
+            setUser(json);
+            console.log(user);
+          } catch (error) {
+            console.log("error", error);
+          }
+        };    
+        fetchData();
+    }, []);
 
-    const handleClick = (e) => {
-        console.log(name)
+    const purchaseTicket = (e) => {
+        e.preventDefault();
+        const movieID = localStorage.getItem("id");
+        const seatID = localStorage.getItem("seatID");
+
+        if (localStorage.getItem("email") === null) {
+
+            const flag = 0;
+            
+        } else {
+
+            const flag = 1;
+            
+        }
+
+        //t expects a 1 for registered User a 0 or anything else for a non registered user
+        const url = "api/v1/boxOffice/purchase/"+ ticketId + "/movie/" + movieID + "/seat/" + seatID +"/ru/" + flag;
+        ticketId++;
+          
+        fetch(url, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(course),
+        })
+          .then((result) => {
+            if (result.ok) {
+              return result.json();
+            }
+            return result.json().then((result) => {
+              alert(result.message);
+              setcoursename("");
+              setPrereqname("");
+              throw new Error(result.error);
+            });
+          })
+          .then(() => {
+            alert("Prerequisite successfully added");
+            setcoursename("");
+            setPrereqname("");
+          })
+          .catch((error) =>
+            console.log(error)
+          );
+
     }
 
-    return(
+    return (
         <>
-        {/* @PutMapping("api/v1/boxOffice/purchase/{ticketId}/movie/{movieId}/seat/{seatId}") */}
+            {/* @PutMapping("*/}
 
-        <div className="movie">
-            <div>
-                <h2> Movie: {movie.title}</h2>
-            </div>
-            <form>
-                <div className="form-group">
-                    <label >Name: will be your username</label>
-                    <input
-                        defaultValue={localStorage.getItem("email")}
-                        type="text"
-                        onChange={(e) => setname(e.target.value)}
-                        className="form-control"
-                        placeholder="Enter Your Name, e.g.: John"
-                    ></input>
-                </div>
-                <div className="form-group">
-                    <label>Address</label>
-                    <input
-                        type="text"
-                        value={address}
-                        onChange={(e) => setaddress(e.target.value)}
-                        className="form-control"
-                        placeholder="Enter your address: 123 Block X, T6X6G8, Calgary, AB"
-                    ></input>
+            <div className="movie">
+
+                <div>
+
+                    <p> Your selections are: </p>
+                    <p>Movie ID: {localStorage.getItem("id")}</p>
+                    <p>Movie Name: {localStorage.getItem("title")}</p>
+                    <p>Show Time: {localStorage.getItem("showTime")}</p>
+
+
                 </div>
 
-                <div className="form-group">
-                    <label>Password</label>
-                    <input
-                        type="password"
-                        value={password}
-                        onChange={(e) => setpassword(e.target.value)}
-                        className="form-control"
-                        placeholder="Enter a password"
-                    ></input>
-                </div>
+                <form>
+                    <div className="form-group">
+                        <label >Name</label>
+                        <input
+                            defaultValue={user.name}
+                            type="text"
+                            onChange={(e) => setname(e.target.value)}
+                            className="form-control"
+                            placeholder="Enter Your Name, e.g.: John"
+                        ></input>
+                    </div>
+                    <div className="form-group">
+                        <label>Address</label>
+                        <input
+                            type="text"
+                            defaultValue={user.address}
+                            onChange={(e) => setaddress(e.target.value)}
+                            className="form-control"
+                            placeholder="Enter your address: 123 Block X, T6X6G8, Calgary, AB"
+                        ></input>
+                    </div>
 
-                <div className="form-group">
-                    <label>Email</label>
-                    <input
-                        type="text"
-                        defaultValue={localStorage.getItem("email")}
-                        onChange={(e) => setemail(e.target.value)}
-                        className="form-control"
-                        placeholder="Enter your email: e.g john.smith@gmail.com"
-                    ></input>
-                </div>
 
-                <div className="form-group">
-                    <label>Credit Card Number</label>
-                    <input
-                        type="text"
-                        value={creditcard}
-                        onChange={(e) => setcreditcard(e.target.value)}
-                        className="form-control"
-                        placeholder="Enter credit card number: e.g 1234 5678 9101 1213"
-                    ></input>
-                </div>
+                    <div className="form-group">
+                        <label>Email</label>
+                        <input
+                            type="text"
+                            defaultValue={user.email}
+                            onChange={(e) => setemail(e.target.value)}
+                            className="form-control"
+                            placeholder="Enter your email: e.g john.smith@gmail.com"
+                        ></input>
+                    </div>
 
-                <button
-                    type="submit"
-                    className="btn btn-primary"
-                >
-                    Register
-                </button>
-            </form>
+                    <div className="form-group">
+                        <label>Credit Card Number</label>
+                        <input
+                            type="text"
+                            defaultValue={user.creditNum}
+                            onChange={(e) => setcreditcard(e.target.value)}
+                            className="form-control"
+                            placeholder="Enter credit card number: e.g 1234 5678 9101 1213"
+                        ></input>
+                    </div>
+
+                    <button
+                        type="submit"
+                        className="btn btn-primary"
+                        onClick={purchaseTicket}
+                    >
+                        Purchase Ticket
+                    </button>
+                </form>
 
             </div>
         </>
