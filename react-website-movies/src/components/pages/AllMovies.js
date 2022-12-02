@@ -20,13 +20,19 @@ function AllMovies() {
 
     const Search = (e) => {
         setFiltered(movie.filter(item => {
-            return item.title === val;
+            return item.title.toLowerCase() === val.toLowerCase();
         }))
+    }
+
+    const reset = (e) => {
+        setFiltered([])
     }
 
     const handleClick = (e) => {
         navigate('/login');
     }
+
+
 
     return (
 
@@ -34,6 +40,8 @@ function AllMovies() {
             <div className="input-group">
                 <input type="text" value={val} onChange={(e) => setVal(e.target.value)} className="form-control" placeholder="Search for a movie, e.g. Black Panther"></input>
                 <button onClick={Search} className="btn btn-dark" type="button">Search</button>
+                <button onClick={reset} className="btn btn-dark" type="button">Show All</button>
+
             </div>
 
             {filtered.length === 0 ?
