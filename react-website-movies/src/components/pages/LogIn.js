@@ -18,6 +18,7 @@ function LogIn(){
 
     const handleClick = (e) => {
       setEmail('');
+      localStorage.clear();
       navigate('/allmovies');
   }
 
