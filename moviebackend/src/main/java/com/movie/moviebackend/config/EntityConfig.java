@@ -31,12 +31,12 @@ public class EntityConfig {
 
                 userRepo.saveAll(List.of(user1,user2,user3,user4,user5));
 
-                Ticket ticket1 = new Ticket(0,10.00,true,null);
-                Ticket ticket2 = new Ticket(0,10.00,true,null);
-                Ticket ticket3 = new Ticket(0,10.00,true,null);
-                Ticket ticket4 = new Ticket(0,10.00,true,null);
-                Ticket ticket5 = new Ticket(0,10.00,true,null);
-                Ticket ticket6 = new Ticket(0,10.00,true,null);
+                Ticket ticket1 = new Ticket(0,10.00,false,null);
+                Ticket ticket2 = new Ticket(0,10.00,false,null);
+                Ticket ticket3 = new Ticket(0,10.00,false,null);
+                Ticket ticket4 = new Ticket(0,10.00,false,null);
+                Ticket ticket5 = new Ticket(0,10.00,false,null);
+                Ticket ticket6 = new Ticket(0,10.00,false,null);
 
                 ticketRepo.saveAll(List.of(ticket1,ticket2,ticket3,ticket4,ticket5,ticket6));
 

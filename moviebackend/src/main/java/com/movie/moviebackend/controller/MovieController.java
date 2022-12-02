@@ -8,19 +8,23 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
+//Set Movie controller pathing
 @RestController
 @CrossOrigin
 @RequestMapping(path = "api/v1/movie")
 public class MovieController {
-
+//Add a movie service object
     private final MovieService movieService;
 
+    //Construtor Set Autowired and initatilize movie service
     @Autowired
     public MovieController(MovieService movieService)
     {
         this.movieService = movieService;
     }
 
+    //Get all the movies
     @GetMapping
     public List<Movie> getMovies()
     {
@@ -33,7 +37,7 @@ public class MovieController {
 //        movieService.addNewMovie(movie);
 //        return "New movie added.";
 //    }
-
+// Delete a movie based on id
     @DeleteMapping(path = "{id}")
     public void deleteMovie(@PathVariable("id") Long id)
     {
@@ -49,6 +53,7 @@ public class MovieController {
 //        movieService.updateMovie(id, title, showTime);
 //    }
 
+    //Get movie based on title
     @GetMapping("title/{title}")
     public Movie getMovie(@PathVariable(required = false) String title) {
         return movieService.getMovieByTitle(title);

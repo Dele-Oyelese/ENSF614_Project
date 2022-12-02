@@ -36,7 +36,7 @@ public class BoxOfficeController {
         return boxOfficeService.getOneTicket(ticketId);
     }
 
-    //Put mapping for purchasing a ticket with movie Id and Seat Id
+    //Put mapping for purchasing a ticket with movie Id and Seat Id and RegisteredUser flag
     @PutMapping("/purchase/{ticketId}/movie/{movieId}/seat/{seatId}/ru/{flag}")
     public void purchaseTicket(
             @PathVariable Long movieId,
@@ -49,7 +49,7 @@ public class BoxOfficeController {
 
 
 
-
+// Put mapping to cancel a ticket based on its id
     @PutMapping("/cancel/{ticketId}")
     public void cancelTicket(
             @PathVariable Long ticketId
