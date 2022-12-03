@@ -22,9 +22,9 @@ public class Ticket {
             generator = "ticket_sequence"
     )
     private Long id;
-    private int seatNum;
+    private int seatNum =0;
     private double price;
-    private boolean buyerStatus;
+    private boolean buyerStatus=false;
     private String movieName;
     private Long mId;
 
@@ -49,6 +49,15 @@ public class Ticket {
     public Ticket(int seatNum, Double price, boolean buyerStatus, String movieName){
         this.buyerStatus =buyerStatus;
         this.seatNum = seatNum;
+        this.price =price;
+        this.movieName =movieName;
+    }
+    public Ticket(int seatNum, Double price, String movieName){
+        this.seatNum = seatNum;
+        this.price =price;
+        this.movieName =movieName;
+    }
+    public Ticket(Double price, String movieName){
         this.price =price;
         this.movieName =movieName;
     }

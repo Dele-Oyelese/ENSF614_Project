@@ -153,6 +153,11 @@ public class BoxOfficeService {
         if(!ticketFound){
             throw new IllegalStateException("Ticket doesn't exist");
         }
+        ticket.setMovieName("");
+        ticket.setSeatNum(0);
+        ticket.setmId(0L);
+        ticket.setBuyerStatus(false);
+
         movieService.cancelSeat(movieId,seatNum);
 
     }
