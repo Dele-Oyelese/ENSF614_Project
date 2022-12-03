@@ -1,12 +1,12 @@
 package com.movie.moviebackend.repository;
 
-import com.movie.moviebackend.model.Movie;
+import com.movie.moviebackend.model.Payment;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface MovieRepo extends JpaRepository<Movie, Long> {
-    List<Movie> findMovieByMovieTitle(String movieTitle);
+public interface PaymentRepo extends JpaRepository<Payment, Long> {
+    //
 }

@@ -32,6 +32,10 @@ public class TicketService {
         {
             throw new IllegalStateException("Ticket already exists.");
         }
+        if(ticket.getBuyerEmail() == null)
+        {
+            throw new IllegalStateException("No buyer name specified.");
+        }
 
         ticketRepo.save(ticket);
         System.out.println("New ticket #" + ticket.getId() + " added.");
@@ -39,30 +43,30 @@ public class TicketService {
 
     public Ticket getTicketById(Long ticketId)
     {
-        Optional<Ticket> ticketById = ticketRepo.findById(ticketId);
-        if (!ticketById.isPresent())
+        Optional<Ticket> ticket = ticketRepo.findById(ticketId);
+        if (ticket.isEmpty())
         {
             throw new IllegalStateException("Ticket #" + ticketId + " does not exist");
         }
-        return ticketById.get();
+        return ticket.get();
     }
 
     public Ticket getTicketBySeatId(Long seatId)
     {
         Optional<Ticket> ticket = ticketRepo.findTicketBySeatId(seatId);
-        if (!ticket.isPresent())
+        if (ticket.isEmpty())
         {
             throw new IllegalStateException("Ticket for seat #" + seatId + " does not exist");
         }
         return ticket.get();
     }
 
-    public Ticket getTicketByBuyerName(String buyerName)
+    public Ticket getTicketByBuyerEmail(String buyerEmail)
     {
-        Optional<Ticket> ticket = ticketRepo.findTicketByBuyerName(buyerName);
-        if (!ticket.isPresent())
+        Optional<Ticket> ticket = ticketRepo.findTicketByBuyerEmail(buyerEmail);
+        if (ticket.isEmpty())
         {
-            throw new IllegalStateException("Ticket for buyer \"" + buyerName + "\" does not exist");
+            throw new IllegalStateException("Ticket for email \"" + buyerEmail + "\" does not exist");
         }
         return ticket.get();
     }
@@ -83,7 +87,7 @@ public class TicketService {
     public void deleteTicketBySeatId(Long seatId)
     {
         Optional<Ticket> ticket = ticketRepo.findTicketBySeatId(seatId);
-        if (!ticket.isPresent())
+        if (ticket.isEmpty())
         {
             throw new IllegalStateException("Ticket for seat #" + seatId + " does not exist");
         }

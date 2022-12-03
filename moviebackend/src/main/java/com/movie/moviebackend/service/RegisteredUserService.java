@@ -76,14 +76,11 @@ public class RegisteredUserService {
         return userById.get();
     }
 
-        public RegisteredUser getUserByEmail(String email) {
+    public RegisteredUser getUserByEmail(String email) {
         Optional<RegisteredUser> userByEmail = registeredUserRepo.findUserByEmail(email);
         if (!userByEmail.isPresent()) {
             throw new IllegalStateException("User does not exist");
         }
         return userByEmail.get();
     }
-
-
-
 }

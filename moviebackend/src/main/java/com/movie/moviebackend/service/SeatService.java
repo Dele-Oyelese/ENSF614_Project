@@ -1,5 +1,6 @@
 package com.movie.moviebackend.service;
 
+import com.movie.moviebackend.model.Movie;
 import com.movie.moviebackend.model.Seat;
 import com.movie.moviebackend.repository.SeatRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,17 @@ public class SeatService {
     public SeatService(SeatRepo seatRepo)
     {
         this.seatRepo = seatRepo;
+    }
+
+    /* Get a seat by id, throw an exception if it does not work */
+    public Seat getSeatById(Long seatId)
+    {
+        Optional<Seat> seat = seatRepo.findById(seatId);
+        if(seat.isEmpty())
+        {
+            throw new IllegalStateException("Seat with ID: " + seatId + " does not exist.");
+        }
+        return seat.get();
     }
 
     /* Get all seats in the database */
@@ -52,6 +64,18 @@ public class SeatService {
         }
 
         seatRepo.save(seat);
+    }
+
+    /* Create a bunch of new seats when a movie is created */
+    public void addSeatsForNewMovie(Movie movie)
+    {
+        /* Need to do a significant logic check when a new movie is added
+            -> Do seats exist for this new movie ID?
+                > Delete them if so
+            -> Check the number of seats
+            -> Create that number of new seats
+                > Associate this movie ID
+         */
     }
 
     /* Delete a seat from the database */

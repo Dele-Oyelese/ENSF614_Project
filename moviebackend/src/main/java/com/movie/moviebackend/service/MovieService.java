@@ -27,16 +27,30 @@ public class MovieService {
         return movieRepo.findAll();
     }
 
+    /* Get a movie with a specific id */
+    public Movie getMovieById(Long movieId)
+    {
+        Optional<Movie> movie = movieRepo.findById(movieId);
+        if(movie.isEmpty())
+        {
+            throw new IllegalStateException("Movie with ID: " + movieId + " does not exist.");
+        }
+        return movie.get();
+    }
+
+    /* Get all movies with a specific title */
+    public List<Movie> getMoviesByTitle(String movieTitle)
+    {
+        return movieRepo.findMovieByMovieTitle(movieTitle);
+    }
+
     /* Add a new movie to the database */
     public void addNewMovie(Movie movie)
     {
         Optional<Movie> movieById = movieRepo.findById(movie.getId());
-
-        if(movieById.isPresent())
-        {
+        if(movieById.isPresent()) {
             throw new IllegalStateException("Movie already exists.");
         }
-
         movieRepo.save(movie);
     }
 

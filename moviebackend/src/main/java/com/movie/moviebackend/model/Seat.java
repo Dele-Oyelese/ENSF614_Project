@@ -18,6 +18,7 @@ public class Seat {
     private Long id;
 
     /* Define this as a foreign key somehow? */
+    /* TODO: cascade delete */
     private Long movieId;
 
     /* In the following format: C01, E28, A12, etc. */

@@ -21,23 +21,60 @@ public class Ticket {
             generator = "ticket_sequence"
     )
     private Long id;
+
+    /* Define this as a foreign key */
+    /* TODO: cascade delete */
     private Long seatId;
+
+    /* Define this as a foreign key */
+    /* TODO: cascade delete */
+    private long paymentId;
+    private String seatNum;
+    private String movieName;
+    private String movieTime;
     private double pricePaid;
-    private String buyerName;
+    private String buyerEmail;
 
     public Ticket(){}
 
-    public Ticket(Long id, Long seatId, Double pricePaid, String buyerName){
+    public Ticket(
+            Long id,
+            Long seatId,
+            Long paymentId,
+            String seatNum,
+            String movieName,
+            String movieTime,
+            double pricePaid,
+            String buyerEmail
+    )
+    {
         this.id = id;
         this.seatId = seatId;
+        this.paymentId = paymentId;
+        this.seatNum = seatNum;
+        this.movieName = movieName;
+        this.movieTime = movieTime;
         this.pricePaid = pricePaid;
-        this.buyerName = buyerName;
+        this.buyerEmail = buyerEmail;
     }
 
-    public Ticket(Long seatId, Double pricePaid, String buyerName){
+    public Ticket(
+            Long seatId,
+            Long paymentId,
+            String seatNum,
+            String movieName,
+            String movieTime,
+            double pricePaid,
+            String buyerEmail
+    )
+    {
         this.seatId = seatId;
+        this.paymentId = paymentId;
+        this.seatNum = seatNum;
+        this.movieName = movieName;
+        this.movieTime = movieTime;
         this.pricePaid = pricePaid;
-        this.buyerName = buyerName;
+        this.buyerEmail = buyerEmail;
     }
 
     public Long getId() {
@@ -56,6 +93,30 @@ public class Ticket {
         this.seatId = seatId;
     }
 
+    public String getSeatNum() {
+        return seatNum;
+    }
+
+    public void setSeatNum(String seatNum) {
+        this.seatNum = seatNum;
+    }
+
+    public String getMovieName() {
+        return movieName;
+    }
+
+    public void setMovieName(String movieName) {
+        this.movieName = movieName;
+    }
+
+    public String getMovieTime() {
+        return movieTime;
+    }
+
+    public void setMovieTime(String movieTime) {
+        this.movieTime = movieTime;
+    }
+
     public double getPricePaid() {
         return pricePaid;
     }
@@ -64,12 +125,11 @@ public class Ticket {
         this.pricePaid = pricePaid;
     }
 
-    public String getBuyerName() {
-        return buyerName;
+    public String getBuyerEmail() {
+        return buyerEmail;
     }
 
-    public void setBuyerName(String buyerName) {
-        this.buyerName = buyerName;
+    public void setBuyerEmail(String buyerEmail) {
+        this.buyerEmail = buyerEmail;
     }
-
 }

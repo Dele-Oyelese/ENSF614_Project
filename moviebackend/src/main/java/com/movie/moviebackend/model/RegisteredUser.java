@@ -20,12 +20,8 @@ public class RegisteredUser {
     private String name;
     private String address;
     private String email;
-
-
-
     private String password;
     private int creditNum;
-
 
     public RegisteredUser(){
     }

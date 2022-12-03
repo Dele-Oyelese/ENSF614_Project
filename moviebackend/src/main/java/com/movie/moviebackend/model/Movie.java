@@ -20,6 +20,8 @@ public class Movie implements Serializable {
 
     private String showTime;
 
+    private Integer numSeats;
+
     /*
     Need to implement a @ManyToMany hashset if we include
     multiple theaters with the same movie
@@ -27,17 +29,19 @@ public class Movie implements Serializable {
 
     public Movie(){}
 
-    public Movie(Long id, String title, String showTime)
+    public Movie(Long id, String title, String showTime, Integer numSeats)
     {
         this.id = id;
         this.title = title;
         this.showTime = showTime;
+        this.numSeats = numSeats;
     }
 
-    public Movie(String title, String showTime)
+    public Movie(String title, String showTime, Integer numSeats)
     {
         this.title = title;
         this.showTime = showTime;
+        this.numSeats = numSeats;
     }
 
     /* Getters and setters */
