@@ -56,7 +56,11 @@ public class RegisteredUserController {
             @RequestParam(required = false) String email){
         userService.updateDate(userId);
     }
+    @DeleteMapping(path="/{userId}")
+    public void deleteStudent(@PathVariable("userId") Long userId){
+        userService.deleteUser(userId);
 
+    }
 
 
 

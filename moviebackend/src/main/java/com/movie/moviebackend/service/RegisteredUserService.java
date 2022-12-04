@@ -93,5 +93,15 @@ public class RegisteredUserService {
 
     }
 
+    public void deleteUser(Long userId) {
+        boolean exists = registeredUserRepo.existsById(userId);
+        if(!exists){
+            throw new IllegalStateException("userId with id " + userId + " does not exist!");
+
+        }
+        registeredUserRepo.deleteById(userId);
+
+    }
+
 
 }
