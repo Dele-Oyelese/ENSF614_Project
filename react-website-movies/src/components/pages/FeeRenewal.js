@@ -68,7 +68,7 @@ export default function Login() {
         let payday = result.regDate;
         const myArray = payday.split("-");
         const payDate = new Date()
-        payDate.setFullYear(myArray[0],myArray[1],myArray[2])
+        payDate.setFullYear(myArray[0],myArray[1]-1,myArray[2])
         const yearDiff = (now-payDate)/yearTime;
         console.log(yearDiff)
 
