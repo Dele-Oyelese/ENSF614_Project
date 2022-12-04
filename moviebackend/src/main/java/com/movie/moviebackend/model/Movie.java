@@ -100,6 +100,12 @@ public class Movie  {
         this.showTime = showTime;
     }
 
+    public Movie(String title)
+    {
+        this.title = title;
+        this.showTime = LocalDateTime.now();
+    }
+
 
     /* Getters and setters */
     public Long getId() {
