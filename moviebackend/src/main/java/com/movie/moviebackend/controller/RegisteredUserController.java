@@ -49,6 +49,14 @@ public class RegisteredUserController {
         userService.updateUser(userId,name,email);
     }
 
+    @PutMapping(path="updateDate/{userId}")
+    public void updateDate(
+            @PathVariable("userId") Long userId,
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) String email){
+        userService.updateDate(userId);
+    }
+
 
 
 
