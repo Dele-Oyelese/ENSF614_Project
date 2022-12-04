@@ -1,5 +1,6 @@
 package com.movie.moviebackend.config;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.movie.moviebackend.extraCode.SeatRepo;
 import com.movie.moviebackend.model.*;
 import com.movie.moviebackend.repository.*;
@@ -8,9 +9,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.List;
-
+import com.fasterxml.jackson.annotation.JsonFormat;
+import java.time.LocalDate;
 
 @Configuration
 public class EntityConfig {
@@ -40,21 +43,23 @@ public class EntityConfig {
 
                 ticketRepo.saveAll(List.of(ticket1,ticket2,ticket3,ticket4,ticket5,ticket6));
 
-                Movie movie1 = new Movie("Black Adam", "12:00");
-                Movie movie2 = new Movie("Black Adam", "18:00");
-                Movie movie3 = new Movie("Black Adam", "20:00");
-                Movie movie4 = new Movie("Avengers","12:00");
-                Movie movie5 = new Movie("Avengers","16:00");
-                Movie movie6 = new Movie("Avengers","20:00");
-                Movie movie7 = new Movie("Smile", "12:00");
-                Movie movie8 = new Movie("Smile", "18:00");
-                Movie movie9 = new Movie("Smile", "20:00");
-                Movie movie10 = new Movie("Hannibal","12:00");
-                Movie movie11 = new Movie("Hannibal","18:00");
-                Movie movie12 = new Movie("Hannibal","20:00");
-                Movie movie13 = new Movie("Elf","12:00");
-                Movie movie14 = new Movie("Elf","18:00");
-                Movie movie15 = new Movie("Elf","20:00");
+                LocalDateTime d1 =  LocalDateTime.now();
+
+                Movie movie1 = new Movie("Black Adam", d1);
+                Movie movie2 = new Movie("Black Adam", d1);
+                Movie movie3 = new Movie("Black Adam", d1);
+                Movie movie4 = new Movie("Avengers",d1);
+                Movie movie5 = new Movie("Avengers",d1);
+                Movie movie6 = new Movie("Avengers",d1);
+                Movie movie7 = new Movie("Smile", d1);
+                Movie movie8 = new Movie("Smile", d1);
+                Movie movie9 = new Movie("Smile", d1);
+                Movie movie10 = new Movie("Hannibal",d1);
+                Movie movie11 = new Movie("Hannibal",d1);
+                Movie movie12 = new Movie("Hannibal",d1);
+                Movie movie13 = new Movie("Elf",d1);
+                Movie movie14 = new Movie("Elf",d1);
+                Movie movie15 = new Movie("Elf",d1);
 
 
 

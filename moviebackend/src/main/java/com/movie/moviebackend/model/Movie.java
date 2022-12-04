@@ -1,11 +1,15 @@
 package com.movie.moviebackend.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.movie.moviebackend.MovieView;
+import net.bytebuddy.asm.Advice;
 
 import javax.persistence.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -33,13 +37,17 @@ public class Movie  {
     @JsonView(MovieView.CoreData.class)
     private String title;
 
-//    Add showtimes
-    private String showTime;
+
 // Movie to a box office table ignoring the movie self referencing
     @OneToMany(mappedBy = "movie")
     @JsonIgnoreProperties("movie")
     @JsonView(MovieView.FullData.class)
     private Set<BoxOffice> boxOffices;
+
+    //    Add showtimes
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime showTime;
+
 
 
 // Initialize all seats availability to true
@@ -56,7 +64,8 @@ public class Movie  {
 
 
 
-//Ability to add a ticket to the Movies Box Office
+
+    //Ability to add a ticket to the Movies Box Office
     public void addTicket(BoxOffice b){boxOffices.add(b);}
 //Ability to remove a ticket from movies boxOffice
     public void removeTicket(BoxOffice b){boxOffices.remove(b);}
@@ -76,7 +85,7 @@ public class Movie  {
     public Movie(){
     }
 // Constructor with ID Title and Showtime
-    public Movie(Long id, String title, String showTime)
+    public Movie(Long id, String title, LocalDateTime showTime)
     {
         this.id = id;
         this.title = title;
@@ -84,12 +93,13 @@ public class Movie  {
 
 
     }
-//Constructor without ID
-    public Movie(String title, String showTime)
+    //Constructor without ID
+    public Movie(String title, LocalDateTime showTime)
     {
         this.title = title;
         this.showTime = showTime;
     }
+
 
     /* Getters and setters */
     public Long getId() {
@@ -108,11 +118,11 @@ public class Movie  {
         this.title = title;
     }
 
-    public String getShowTime() {
+    public LocalDateTime getShowTime() {
         return showTime;
     }
 
-    public void setShowTime(String showTime) {
+    public void setShowTime(LocalDateTime showTime) {
         this.showTime = showTime;
     }
 
@@ -203,4 +213,6 @@ public class Movie  {
     public void setSeat10(boolean seat10) {
         this.seat10 = seat10;
     }
+
+
 }
