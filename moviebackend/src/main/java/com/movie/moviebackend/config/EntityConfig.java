@@ -44,22 +44,29 @@ public class EntityConfig {
                 ticketRepo.saveAll(List.of(ticket1,ticket2,ticket3,ticket4,ticket5,ticket6));
 
                 LocalDateTime d1 =  LocalDateTime.now();
+                LocalDateTime d2 =  LocalDateTime.of(2022,12,8,8,0);
+                LocalDateTime d3 =  LocalDateTime.of(2022,12,8,12,0);
+                LocalDateTime d4 =  LocalDateTime.of(2022,12,8,18,0);
+                LocalDateTime d5 =  LocalDateTime.of(2022,12,8,22,0);
+                LocalDateTime d6 =  LocalDateTime.of(2022,12,10,8,0);
+                LocalDateTime d7 =  LocalDateTime.of(2022,12,10,14,0);
+
 
                 Movie movie1 = new Movie("Black Adam", d1);
-                Movie movie2 = new Movie("Black Adam", d1);
-                Movie movie3 = new Movie("Black Adam", d1);
-                Movie movie4 = new Movie("Avengers",d1);
-                Movie movie5 = new Movie("Avengers",d1);
-                Movie movie6 = new Movie("Avengers",d1);
+                Movie movie2 = new Movie("Black Adam", d2);
+                Movie movie3 = new Movie("Black Adam", d3);
+                Movie movie4 = new Movie("Avengers",d4);
+                Movie movie5 = new Movie("Avengers",d5);
+                Movie movie6 = new Movie("Avengers",d6);
                 Movie movie7 = new Movie("Smile", d1);
-                Movie movie8 = new Movie("Smile", d1);
-                Movie movie9 = new Movie("Smile", d1);
-                Movie movie10 = new Movie("Hannibal",d1);
-                Movie movie11 = new Movie("Hannibal",d1);
-                Movie movie12 = new Movie("Hannibal",d1);
+                Movie movie8 = new Movie("Smile", d2);
+                Movie movie9 = new Movie("Smile", d3);
+                Movie movie10 = new Movie("Hannibal",d5);
+                Movie movie11 = new Movie("Hannibal",d6);
+                Movie movie12 = new Movie("Hannibal",d7);
                 Movie movie13 = new Movie("Elf",d1);
-                Movie movie14 = new Movie("Elf",d1);
-                Movie movie15 = new Movie("Elf",d1);
+                Movie movie14 = new Movie("Elf",d2);
+                Movie movie15 = new Movie("Elf",d3);
 
 
 
