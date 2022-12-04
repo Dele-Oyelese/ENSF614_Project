@@ -9,6 +9,7 @@ import CancelTicket from './components/pages/CancelTicket';
 import Seating from './components/Seating';
 import Payment from './components/pages/Payment';
 import ContactUs from './components/pages/ContactUs';
+import FeeRenewal from './components/pages/FeeRenewal';
 
 
 function App() {
@@ -25,7 +26,7 @@ function App() {
           <Route path='/seating' element={<Seating />} />
           <Route path='/payment' element={<Payment />} />
           <Route path='/contactus' element={<ContactUs />} />
-          
+          <Route path='/feeRenewal' element={<FeeRenewal />} />
           
         </Routes>
       </Router>
