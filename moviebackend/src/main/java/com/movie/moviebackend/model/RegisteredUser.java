@@ -35,6 +35,7 @@ public class RegisteredUser {
 // Add Password and CreditNum
     private String password;
     private int creditNum;
+    private boolean paidFee = false;
 
 // Default Constructor
     RegisteredUser(){
