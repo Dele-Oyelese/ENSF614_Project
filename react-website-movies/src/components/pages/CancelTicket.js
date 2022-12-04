@@ -11,7 +11,7 @@ function CancelTicket() {
     const [showTime, setshowtime] = useState('');
     const [email, setEmail] = useState('')
     const now = new Date();    
-    const yearTime = 24 * 60 * 60 * 1000 * 365;   
+    const dayTime = 24 * 60 * 60 * 1000;   
 
     const handleClick = (e) => {
         e.preventDefault();
@@ -25,33 +25,53 @@ function CancelTicket() {
             setticket(result);
 
             console.log(result);
-
+            console.log(result.boxOffices[0].movie.showTime)
+            console.log(ticket)
             setStatus(
-                Array.isArray(ticket)
-                    ? ticket.map(item => {
+                Array.isArray(result)
+                    ? result.map(item => {
                         return (item.buyerStatus)
                     })
                     : null
             )
 
             setshowtime(
-                Array.isArray(ticket)
-                    ? ticket.map(item => {                        
+                Array.isArray(result)
+                    ? result.map(item => {      
+                        console.log(item.boxOffices[0].movie.showTime)
                         return (item.boxOffices[0].movie.showTime)
                     })
                     : null
             )
+
+            if(result.boxOffices[0].movie.showTime != null){
+                const date = result.boxOffices[0].movie.showTime;
+                const stringDate =date.substring(0,10);
+                const hr = date.substring(12,13)
+                const min =date.substring(15,16)
+                const sec =date.substring(18,19)
+                console.log(stringDate)
+                console.log(hr)
+
+                const myArray = stringDate.split("-");
+                const payDate = new Date()
+                console.log(myArray)
+                payDate.setFullYear(myArray[0],myArray[1]-1,myArray[2])
+                payDate.setHours(hr,min,sec)
+                console.log(payDate)
+                const timeDiff = (payDate - now) / dayTime;
+
+                // 
+                }
+
+
+
         }
         
         )
 
 
-        // console.log(showTime.getUTCFullYear())
-        // const date = showTime.toString()
-        // const date = showTime.substring(0,10);
-        // console.log(showTime)
-        // const timeDiff = (now - showTime) / yearTime;
-        // console.log(timeDiff)
+       
 
         // if (timeDiff >= 3) {
         //     alert("Sorry, it has already been 72 hours from your purchased time. No refund can be processed");
