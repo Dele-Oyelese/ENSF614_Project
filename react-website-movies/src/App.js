@@ -8,7 +8,7 @@ import LogIn from './components/pages/LogIn';
 import CancelTicket from './components/pages/CancelTicket';
 import Seating from './components/Seating';
 import Payment from './components/pages/Payment';
-import ContactUs from './components/pages/ContactUs';
+import Admin from './components/pages/Admin';
 import FeeRenewal from './components/pages/FeeRenewal';
 
 
@@ -25,7 +25,7 @@ function App() {
           <Route path='/cancelticket' element={<CancelTicket />} />
           <Route path='/seating' element={<Seating />} />
           <Route path='/payment' element={<Payment />} />
-          <Route path='/contactus' element={<ContactUs />} />
+          <Route path='/admin' element={<Admin />} />
           <Route path='/feeRenewal' element={<FeeRenewal />} />
           
         </Routes>
