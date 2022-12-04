@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -80,6 +81,17 @@ public class RegisteredUserService {
     return userByEmail.get();
 }
 
+    public void updateDate(Long userId) {
+
+        // Check if user exists
+        RegisteredUser user = registeredUserRepo.findById(userId)
+                .orElseThrow(() -> new IllegalStateException("User does not exist"));
+
+        user.setRegDate(LocalDate.now());
+
+        registeredUserRepo.save(user);
+
+    }
 
 
 }
