@@ -34,7 +34,7 @@ function Payment() {
 
     const sendEmail = (e) => {
         e.preventDefault();
-        emailjs.sendForm('gmail', 'template_7woudlf', e.target, 'GE7vkWWcHkEMc_LhW')
+        emailjs.sendForm('gmail', 'template_7woudlf', form.current, 'GE7vkWWcHkEMc_LhW')
           .then((result) => {
               console.log(result.text);
           }, (error) => {
@@ -70,7 +70,7 @@ function Payment() {
                     <p name = "show_time">Show Time: {localStorage.getItem("showTime")}</p>
                 </div>
 
-                <form ref={form} onSubmit={sendEmail}>
+                <form>
 
                     
 
@@ -120,31 +120,6 @@ function Payment() {
                             placeholder="Enter credit card number: e.g 1234 5678 9101 1213"
                         ></input>
                     </div>
-                    <input
-                        type="hidden"
-                        className="form-control"
-                        name="movie_id"
-                         defaultValue={localStorage.getItem("id")}
-                        ></input>
-                        <input
-                        type="hidden"
-                        className="form-control"
-                        name="movie_name"
-                         defaultValue={localStorage.getItem("title")}
-                         ></input>
-                        <input
-                        type="hidden"
-                        className="form-control"
-                        name="show_time"
-                         defaultValue={localStorage.getItem("showTime")}
-                         ></input>
-                         <input
-                        type="hidden"
-                        className="form-control"
-                        name="movie_id"
-                         defaultValue={localStorage.getItem("seatid")}
-                         ></input>
-
                     <button type="submit" className="btn btn-primary" onClick={purchaseTicket}>
                         Purchase Ticket
                     </button>
@@ -152,6 +127,19 @@ function Payment() {
                     <button type="submit" className="btn btn-primary" onClick={sendEmail}>
                         Send Confirmation Email
                     </button>
+                </form>
+                <form ref={form} onSubmit={sendEmail}>
+                
+                <input type="hidden" name="user_name" defaultValue={"Greetings " + name} />
+                
+                <input type="hidden" name="user_email" defaultValue={email} />
+                
+                <input type="hidden" name="subject" defaultValue={"Movie Theater Confirmation Ticket"} />
+                
+                <input type="hidden" name="message" defaultValue={"We hope you enjoy your showing of " + localStorage.getItem("title") + ", your movie information is: TicketID: " + ticketId + ", Movie Showtime: " + localStorage.getItem("showTime") + ", in seat #: " + localStorage.getItem("seatid")} />
+            
+                <input type="hidden" name="messageone" defaultValue={"If you would like to cancel your ticket please go to the following website and put in your Ticket ID:  https://localhost:3000/cancelticket"} />
+                
                 </form>
             </div>
         </>
