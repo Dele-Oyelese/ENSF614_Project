@@ -28,6 +28,10 @@ function Navbar() {
                     <Link to='/login' className='nav-links' > Log In </Link>
                 </li>
 
+                <li className='nav-item'>
+                    <Link to='/feeRenewal' className='nav-links' > Fee Renewal </Link>
+                </li>
+
             </ul>
                       
         </div>
