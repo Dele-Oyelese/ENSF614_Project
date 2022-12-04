@@ -16,6 +16,7 @@ export const Admin = () => {
   const [password, setPassword] = React.useState('')
   const [creditcard, setCreditCard] = React.useState('')
   const [message, setMessage] = React.useState('')
+  const [userID, setUserID] = React.useState('')
 
   
   const form = useRef();
@@ -31,19 +32,55 @@ export const Admin = () => {
   };
 
   const addMovie = (e) => {
-
+    e.preventDefault()
+    const movie={movieTitle}
+    console.log(movie)
+    fetch("http://localhost:8080/api/v1/movie/add",{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify(movie)
+    }).then(()=>{
+      console.log("New Student Added")
+    })
   }
 
   const removeMovie = (e) => {
-
+    e.preventDefault()
+    const movie={movieID}
+    console.log(movie)
+    fetch("http://localhost:8080/api/v1/movie/" + {movieID},{
+      method:"DELETE",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify(movie)
+    }).then(()=>{
+      console.log("Movie Deleted")
+    })
   }
 
   const addUser = (e) => {
-
+    e.preventDefault()
+    const user={name, address,creditcard,email,password}
+    console.log(user)
+    fetch("http://localhost:8080/api/v1/movie/add",{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify(user)
+    }).then(()=>{
+      console.log("New User Added")
+    })
   }
 
   const removeUser = (e) => {
-
+    e.preventDefault()
+    const userID={userID}
+    console.log(userID)
+    fetch("http://localhost:8080/api/v1/user/" + {userID},{
+      method:"DELETE",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify(userID)
+    }).then(()=>{
+      console.log("User Deleted")
+    })
   }
 
 
@@ -154,7 +191,7 @@ export const Admin = () => {
           id="outlined-read-only-input"
           label="User Email"
           helperText="EX: John.smith@gmail.com"
-          value={movieTitle}
+          value={email}
           onChange={(e)=>setEmail(e.target.value)}>
        </TextField>
        <br></br>       
