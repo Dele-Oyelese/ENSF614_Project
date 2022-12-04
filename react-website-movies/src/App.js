@@ -33,7 +33,7 @@ function App() {
           <Route path='/payment' element={<Payment />} />
           <Route path='/admin' element={<Admin />} />
           <Route path='/payment' element={<Payment updateTicket = {updateTicket} ticketValue = {ticketId}/>} />
-          <Route path='/contactus' element={<ContactUs />} />
+          <Route path='/Admin' element={<Admin />} />
           <Route path='/feeRenewal' element={<FeeRenewal />} />
           
         </Routes>
