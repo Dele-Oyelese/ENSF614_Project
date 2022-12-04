@@ -30,7 +30,7 @@ export default function Login() {
   const handleClick2=(e) =>{
     e.preventDefault()
  
-    const url = "http://localhost:8080/api/v1/user/"+user;
+    const url = "http://localhost:8080/api/v1/user/updateDate/"+user;
     console.log(url)
     fetch(url, {
         method: "PUT",
