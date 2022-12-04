@@ -50,7 +50,8 @@ function Payment(props) {
         console.log("TicketID is: " + props.ticketValue);
         console.log("Flag is" + flag);
         const url = "http://localhost:8080/api/v1/boxOffice/purchase/" + props.ticketValue + "/movie/" + movieID + "/seat/" + seatID + "/ru/" + flag;
-        props.updateTicket()
+        props.updateTicket()     
+           
         fetch(url, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
