@@ -67,8 +67,8 @@ function AllMovies() {
                             return (
                                 <>
                                     <p>name = {item.title} </p>
-                                    <img src={item.title + ".jpg"} width="200" length="200" />
-                                    <p>showTime = {item.showTime} </p>
+                                    <img src={item.title + ".jpg"} width="200" length="200" />                                    
+                                    <button onClick={() => handleClick(item.showTime, item.title, item.id)} type="button" className="btn btn-dark">{item.showTime}</button>
                                     
                                 </>)
                         })
