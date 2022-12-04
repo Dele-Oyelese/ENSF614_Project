@@ -1,4 +1,5 @@
 import '../../App.css';
+import './AllMovies.css'
 import { Link, useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 
@@ -44,9 +45,7 @@ function AllMovies() {
                 <button onClick={reset} className="btn btn-dark" type="button">Show All</button>
 
             </div>
-
-            
-
+            <div className="movie-container">
             {filtered.length === 0 ?
                 <ul>
                     {Array.isArray(movie)
@@ -60,22 +59,27 @@ function AllMovies() {
                                 </>)
                         })
                         : null}
-                </ul> :
+                </ul>:
 
                 <ul>
                     {Array.isArray(filtered)
                         ? filtered.map(item => {
                             return (
-                                <><p>name = {item.title} </p>
+                                <>
+                                    <p>name = {item.title} </p>
                                     <img src={item.title + ".jpg"} width="200" length="200" />
                                     <p>showTime = {item.showTime} </p>
+                                    
                                 </>)
                         })
                         : null}
+                        
                 </ul>
 
             }
-        </div>
+            </div>
+            </div>
+        
     );
 }
 
