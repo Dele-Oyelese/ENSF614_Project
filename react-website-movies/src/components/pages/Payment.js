@@ -4,59 +4,58 @@ import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from "react";
 import emailjs from 'emailjs-com';
 
-function Payment() {
+function Payment(props) {
     const form = useRef();
 
     const [name, setname] = useState("");
     const [address, setaddress] = useState("");
     const [email, setemail] = useState("");
     const [creditcard, setcreditcard] = useState("");
-    const [user, setUser] = useState([]);
-    const [ticketId, setticketId] = useState(1);
+    const [user, setUser] = useState([]);    
     const [flag, setFlag] = useState(1);
 
     useEffect(() => {
+        if (localStorage.getItem("email") == null) {
+            setFlag(0);
+        }
+        
         const url = "http://localhost:8080/api/v1/user/Email/".concat(localStorage.getItem("email"));
         const fetchData = async () => {
             try {
                 const response = await fetch(url);
                 const json = await response.json();
-                setUser(json);
-                console.log(user);
+                setUser(json);                
             } catch (error) {
                 console.log("error", error);
             }
         };
         fetchData();
-        setticketId(ticketId + 1);
-        console.log(ticketId);
     }, []);
 
     const sendEmail = (e) => {
         e.preventDefault();
         emailjs.sendForm('gmail', 'template_7woudlf', form.current, 'GE7vkWWcHkEMc_LhW')
-          .then((result) => {
-              console.log(result.text);
-          }, (error) => {
-              console.log(error.text);
-          });
-          e.target.reset()
-      };
+            .then((result) => {
+                console.log(result.text);
+            }, (error) => {
+                console.log(error.text);
+            });
+        e.target.reset()
+    };
 
     const purchaseTicket = (e) => {
         e.preventDefault();
         const movieID = localStorage.getItem("id");
         const seatID = localStorage.getItem("seatid");
-        if (localStorage.getItem("email") == null) {
-            setFlag(0);
-        }
-        //t expects a 1 for registered User a 0 or anything else for a non registered user
-        const url = "http://localhost:8080/api/v1/boxOffice/purchase/" + ticketId + "/movie/" + movieID + "/seat/" + seatID + "/ru/" + flag;
-        console.log(url)
+        console.log("TicketID is: " + props.ticketValue);
+        console.log("Flag is" + flag);
+        const url = "http://localhost:8080/api/v1/boxOffice/purchase/" + props.ticketValue + "/movie/" + movieID + "/seat/" + seatID + "/ru/" + flag;
+        props.updateTicket()
         fetch(url, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
         })
+        
     }
 
     return (
@@ -64,20 +63,19 @@ function Payment() {
             {/* @PutMapping("*/}
             <div className="movie">
                 <div>
-                <p> Your selections are: </p>
-                    <p name = "movie_id">Movie ID: {localStorage.getItem("id")}</p>
-                    <p name = "movie_name">Movie Name: {localStorage.getItem("title")}</p>
-                    <p name = "show_time">Show Time: {localStorage.getItem("showTime")}</p>
+                    <p> Your selections are: </p>
+                    <p name="movie_id">Movie ID: {localStorage.getItem("id")}</p>
+                    <p name="movie_name">Movie Name: {localStorage.getItem("title")}</p>
+                    <p name="show_time">Show Time: {localStorage.getItem("showTime")}</p>
+                    <p> Seat Number: {localStorage.getItem("seatid")}</p>
                 </div>
 
                 <form>
 
-                    
-
                     <div className="form-group">
                         <label >Name</label>
                         <input
-                            name = "user_name"
+                            name="user_name"
                             defaultValue={user.name}
                             type="text"
                             onChange={(e) => setname(e.target.value)}
@@ -88,7 +86,7 @@ function Payment() {
                     <div className="form-group">
                         <label>Address</label>
                         <input
-                            name = "user_address"
+                            name="user_address"
                             type="text"
                             defaultValue={user.address}
                             onChange={(e) => setaddress(e.target.value)}
@@ -101,7 +99,7 @@ function Payment() {
                     <div className="form-group">
                         <label>Email</label>
                         <input
-                            name = "user_email"
+                            name="user_email"
                             type="email"
                             defaultValue={user.email}
                             onChange={(e) => setemail(e.target.value)}
@@ -129,17 +127,17 @@ function Payment() {
                     </button>
                 </form>
                 <form ref={form} onSubmit={sendEmail}>
-                
-                <input type="hidden" name="user_name" defaultValue={"Greetings " + name} />
-                
-                <input type="hidden" name="user_email" defaultValue={email} />
-                
-                <input type="hidden" name="subject" defaultValue={"Movie Theater Confirmation Ticket"} />
-                
-                <input type="hidden" name="message" defaultValue={"We hope you enjoy your showing of " + localStorage.getItem("title") + ", your movie information is: TicketID: " + ticketId + ", Movie Showtime: " + localStorage.getItem("showTime") + ", in seat #: " + localStorage.getItem("seatid")} />
-            
-                <input type="hidden" name="messageone" defaultValue={"If you would like to cancel your ticket please go to the following website and put in your Ticket ID:  https://localhost:3000/cancelticket"} />
-                
+
+                    <input type="hidden" name="user_name" defaultValue={"Greetings " + name} />
+
+                    <input type="hidden" name="user_email" defaultValue={email} />
+
+                    <input type="hidden" name="subject" defaultValue={"Movie Theater Confirmation Ticket"} />
+
+                    <input type="hidden" name="message" defaultValue={"We hope you enjoy your showing of " + localStorage.getItem("title") + ", your movie information is: TicketID: " + props.ticketValue + ", Movie Showtime: " + localStorage.getItem("showTime") + ", in seat #: " + localStorage.getItem("seatid")} />
+
+                    <input type="hidden" name="messageone" defaultValue={"If you would like to cancel your ticket please go to the following website and put in your Ticket ID:  https://localhost:3000/cancelticket"} />
+
                 </form>
             </div>
         </>
