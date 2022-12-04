@@ -174,12 +174,7 @@ public class MovieService {
 
         /* Check to see if the show time is acceptable */
         /* Only the movie with matching title and showtime will be changed. */
-        if(showTime != null && !Objects.equals(movie.getShowTime(), showTime) )
-        {
-            /* TODO: Need to figure out this implementation */
 
-            movie.setShowTime(showTime);
-        }
     }
 
     //get the movie by title

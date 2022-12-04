@@ -76,6 +76,7 @@ function LogIn(){
 
             <button type="submit" class="btn btn-primary" onClick={handleClick}>Continue as Guest</button>
             <br></br>
+            <hr></hr>
             <button type="submit" class="btn btn-primary" onClick={adminClick}>Login As Admin</button>  
         </div>            
         </>

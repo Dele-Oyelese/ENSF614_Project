@@ -35,7 +35,6 @@ public class RegisteredUser {
 // Add Password and CreditNum
     private String password;
     private int creditNum;
-    private boolean paidFee = false;
 
 // Default Constructor
     RegisteredUser(){
@@ -117,5 +116,13 @@ public class RegisteredUser {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public LocalDate getRegDate() {
+        return regDate;
+    }
+
+    public void setRegDate(LocalDate regDate) {
+        this.regDate = regDate;
     }
 }
