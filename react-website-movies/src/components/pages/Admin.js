@@ -40,6 +40,10 @@ export const Admin = () => {
 
   }
 
+  const removeUser = (e) => {
+
+  }
+
 
   return (
     <div>
@@ -132,7 +136,27 @@ export const Admin = () => {
        </TextField>
 
        <br></br>       
-        <Button variant="outlined" onClick={removeMovie}> Name Address Email Password CC </Button>
+        <Button variant="outlined" onClick={addUser}> Add User </Button>
+        </Box>
+    </Paper>
+
+    <Paper elevation={6} style={paperStyle}>
+      <p>Remove User From Database</p>
+      <Box
+      component="form"
+      sx={{'& .MuiTextField-root': { m: 1, width: '25ch' },}}
+      noValidate
+      autoComplete="off">
+
+      <TextField
+          id="outlined-read-only-input"
+          label="User Email"
+          helperText="EX: John.smith@gmail.com"
+          value={movieTitle}
+          onChange={(e)=>setEmail(e.target.value)}>
+       </TextField>
+       <br></br>       
+        <Button variant="outlined" onClick={removeUser}> Remove User </Button>
         </Box>
     </Paper>
 
