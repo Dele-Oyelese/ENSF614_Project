@@ -5,6 +5,8 @@ import { Container } from '@mui/system';
 import { Paper } from '@mui/material';
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
+import { useRef } from 'react';
+import emailjs from 'emailjs-com';
 
 
 export default function Login() {
@@ -91,7 +93,17 @@ export default function Login() {
     )
   },[check])
 
+  const form = useRef();
 
+  const sendEmail = (e) => {
+    e.preventDefault();
+    emailjs.sendForm('gmail', 'template_7woudlf', form.current, 'GE7vkWWcHkEMc_LhW')
+      .then((result) => {
+          console.log(result.text);
+      }, (error) => {
+          console.log(error.text);
+      });
+  };
 
 
   
@@ -129,10 +141,25 @@ export default function Login() {
         <Paper elevation={6} style={{margin:'10px', padding:'15px', textAlign:"left"}} >
                     {confirmation}
         </Paper>
+        
+        <button
+                        type="submit"
+                        onClick={sendEmail}
+                        class="btn btn-primary" >Send Confirmation Email</button>
+        
     </Box>
     </Paper>
+    <form ref={form} onSubmit={sendEmail}>
+    <input type="hidden" name="user_name" defaultValue={"Greetings "}/>
+    <input type="hidden" name="user_email" defaultValue={email}/>
+    <input type="hidden" name="subject" defaultValue={"Movie Theater Fee Renewal Confirmation"}/>
+    <input type="hidden" name="message" defaultValue={"This is a confirmation email that your fee renewal for your account has been successful"} />
+    <input type="hidden" name="messageone" defaultValue={"We hope to see you at the movies"}/>
+  </form>
     </Container>
     
+
+
   );
 }
 
