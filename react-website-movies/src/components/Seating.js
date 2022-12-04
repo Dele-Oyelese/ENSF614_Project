@@ -54,16 +54,16 @@ function Seating() {
                                 <p>Movie: {item.title}</p>
                                 <p>ShowTime: {item.showTime}</p>                                
                                 <div class="container">
-                                <p>{item.seat1 === true ? <button type="button" class="btn btn-success" onClick={() => handleClick(1)} >1</button> : <button type="button" class="btn btn-danger" >1</button>}</p>
-                                <p>{item.seat2 === true ? <button type="button" class="btn btn-success" onClick={() => handleClick(2)} >2</button> : <button type="button" class="btn btn-danger" >2</button>}</p>
-                                <p>{item.seat3 === true ? <button type="button" class="btn btn-success" onClick={() => handleClick(3)} >3</button> : <button type="button" class="btn btn-danger">3</button>}</p>
-                                <p>{item.seat4 === true ? <button type="button" class="btn btn-success" onClick={() => handleClick(4)} >4</button> : <button type="button" class="btn btn-danger">4</button>}</p>
-                                <p>{item.seat5 === true ? <button type="button" class="btn btn-success" onClick={() => handleClick(5)} >5</button> : <button type="button" class="btn btn-danger">5</button>}</p>
-                                <p>{item.seat6 === true ? <button type="button" class="btn btn-success" onClick={() => handleClick(6)} >6</button> : <button type="button" class="btn btn-danger">6</button>}</p>
-                                <p>{item.seat7 === true ? <button type="button" class="btn btn-success" onClick={() => handleClick(7)} >7</button> : <button type="button" class="btn btn-danger">7</button>}</p>
-                                <p>{item.seat8 === true ? <button type="button" class="btn btn-success" onClick={() => handleClick(8)} >8</button> : <button type="button" class="btn btn-danger">8</button>}</p>
-                                <p>{item.seat9 === true ? <button type="button" class="btn btn-success" onClick={() => handleClick(9)} >9</button> : <button type="button" class="btn btn-danger">9</button>}</p>
-                                <p>{item.seat10 === true ? <button type="button" class="btn btn-success" onClick={() => handleClick(10)} >10</button> : <button type="button" class="btn btn-danger">10</button>}</p>    
+                                <p className="button1">{item.seat1 === true ? <button type="button" class="btn btn-success" onClick={() => handleClick(1)} >1</button> : <button type="button" class="btn btn-danger" >1</button>}</p>
+                                <p className="button2">{item.seat2 === true ? <button type="button" class="btn btn-success" onClick={() => handleClick(2)} >2</button> : <button type="button" class="btn btn-danger" >2</button>}</p>
+                                <p className="button3">{item.seat3 === true ? <button type="button" class="btn btn-success" onClick={() => handleClick(3)} >3</button> : <button type="button" class="btn btn-danger">3</button>}</p>
+                                <p className="button4">{item.seat4 === true ? <button type="button" class="btn btn-success" onClick={() => handleClick(4)} >4</button> : <button type="button" class="btn btn-danger">4</button>}</p>
+                                <p className="button5">{item.seat5 === true ? <button type="button" class="btn btn-success" onClick={() => handleClick(5)} >5</button> : <button type="button" class="btn btn-danger">5</button>}</p>
+                                <p className="button6">{item.seat6 === true ? <button type="button" class="btn btn-success" onClick={() => handleClick(6)} >6</button> : <button type="button" class="btn btn-danger">6</button>}</p>
+                                <p className="button7">{item.seat7 === true ? <button type="button" class="btn btn-success" onClick={() => handleClick(7)} >7</button> : <button type="button" class="btn btn-danger">7</button>}</p>
+                                <p className="button8">{item.seat8 === true ? <button type="button" class="btn btn-success" onClick={() => handleClick(8)} >8</button> : <button type="button" class="btn btn-danger">8</button>}</p>
+                                <p className="button9">{item.seat9 === true ? <button type="button" class="btn btn-success" onClick={() => handleClick(9)} >9</button> : <button type="button" class="btn btn-danger">9</button>}</p>
+                                <p className="button10">{item.seat10 === true ? <button type="button" class="btn btn-success" onClick={() => handleClick(10)} >10</button> : <button type="button" class="btn btn-danger">10</button>}</p>    
                                 </div>
                                 </>)
                         })

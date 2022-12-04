@@ -1,4 +1,25 @@
-.movie-container{
+.movieone{
     display:flex;
-    flex: 0 0 75%;
+    flex-direction: row;
+}
+
+.movietwo{
+    display:flex;
+    flex-direction: row;
+}
+
+.divone {
+    display:flex;
+    overflow-x: auto;
+}
+
+.divtwo {
+    display:flex;
+}
+
+.insideone{
+    margin: 20px
+}
+.insidetwo{
+    margin:20px
 }

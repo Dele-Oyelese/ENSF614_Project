@@ -9,6 +9,7 @@ import Container from '@mui/material/Container';
 export const Admin = () => {
   const paperStyle={padding:'50px 20px', width:600,margin:'10px auto'}
   const [movieTitle, setMTitle] = React.useState('')
+  const [movieID, setMovieID] = React.useState('')
   const [name, setName] = React.useState('')
   const [email, setEmail] = React.useState('')
   const [address, setAddress] = React.useState('')
@@ -80,10 +81,10 @@ export const Admin = () => {
 
       <TextField
           id="outlined-read-only-input"
-          label="Movie Title"
-          helperText="EX: Toy Story"
+          label="Movie ID"
+          helperText="EX: 1 or 2"
           value={movieTitle}
-          onChange={(e)=>setMTitle(e.target.value)}>
+          onChange={(e)=>setMovieID(e.target.value)}>
        </TextField>
 
        <br></br>       
@@ -98,7 +99,7 @@ export const Admin = () => {
       sx={{'& .MuiTextField-root': { m: 1, width: '25ch' },}}
       noValidate
       autoComplete="off">
-
+        
       <TextField
           id="outlined-read-only-input"
           label="Name"
