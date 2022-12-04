@@ -29,9 +29,7 @@ function App() {
           <Route path='/register' element={<Registration />} />
           <Route path='/login' element={<LogIn />} /> 
           <Route path='/cancelticket' element={<CancelTicket />} />
-          <Route path='/seating' element={<Seating />} />
-          <Route path='/payment' element={<Payment />} />
-          <Route path='/admin' element={<Admin />} />
+          <Route path='/seating' element={<Seating />} />      
           <Route path='/payment' element={<Payment updateTicket = {updateTicket} ticketValue = {ticketId}/>} />
           <Route path='/Admin' element={<Admin />} />
           <Route path='/feeRenewal' element={<FeeRenewal />} />
