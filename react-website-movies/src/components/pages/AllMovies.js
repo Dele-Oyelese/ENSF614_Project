@@ -47,34 +47,34 @@ function AllMovies() {
             </div>
             <div className="movie-container">
             {filtered.length === 0 ?
-                <ul>
+                <div className="divone">
                     {Array.isArray(movie)
                         ? movie.map(item => {
                             return (
-                                <>
+                                <div className="insideone">
                                 <p>{item.title} </p>                                    
                                 <img src={item.title + ".jpg"} width="200" length="200" />
                                 <br></br>
                                 <button onClick={() => handleClick(item.showTime, item.title, item.id)} type="button" className="btn btn-dark">{item.showTime}</button>
-                                </>)
+                                </div>)
                         })
                         : null}
-                </ul>:
+                </div>:
 
-                <ul>
+                <div className="divtwo">
                     {Array.isArray(filtered)
                         ? filtered.map(item => {
                             return (
-                                <>
+                                <div className="insidetwo">
                                     <p>name = {item.title} </p>
                                     <img src={item.title + ".jpg"} width="200" length="200" />                                    
                                     <button onClick={() => handleClick(item.showTime, item.title, item.id)} type="button" className="btn btn-dark">{item.showTime}</button>
                                     
-                                </>)
+                                </div>)
                         })
                         : null}
                         
-                </ul>
+                </div>
 
             }
             </div>
