@@ -15,6 +15,7 @@ export const Admin = () => {
   const [address, setAddress] = React.useState('')
   const [password, setPassword] = React.useState('')
   const [creditcard, setCreditCard] = React.useState('')
+  const [message, setMessage] = React.useState('')
 
   
   const form = useRef();
@@ -99,7 +100,7 @@ export const Admin = () => {
       sx={{'& .MuiTextField-root': { m: 1, width: '25ch' },}}
       noValidate
       autoComplete="off">
-        
+
       <TextField
           id="outlined-read-only-input"
           label="Name"
@@ -160,17 +161,43 @@ export const Admin = () => {
         <Button variant="outlined" onClick={removeUser}> Remove User </Button>
         </Box>
     </Paper>
+    <Paper elevation={6} style={paperStyle}>
+      <p>Send Public Announcment</p>
+      <Box
+      component="form"
+      sx={{'& .MuiTextField-root': { m: 1, width: '25ch' },}}
+      noValidate
+      autoComplete="off">
+
+      <TextField
+          id="outlined-read-only-input"
+          label="New Movie Name"
+          helperText="EX: Toy Story"
+          value={movieTitle}
+          onChange={(e)=>setMTitle(e.target.value)}>
+       </TextField>
+       <TextField
+          id="outlined-read-only-input"
+          label="Email"
+          helperText="EX: John.smith@gmail.com"
+          value={email}
+          onChange={(e)=>setEmail(e.target.value)}>
+       </TextField>
+       <br></br>       
+        <Button variant="outlined" onClick={sendEmail}> Send Public Announcment </Button>
+        </Box>
+    </Paper>
 
 
 
     </div>
 
     <form ref={form} onSubmit={sendEmail}>
-      <input type="hidden" name="user_name" />
-      <input type="hidden" name="user_email" />
-      <input type="hidden" name="subject" />
-      <input type="hidden" name="message" />
-      <input type="hidden" name="messageone" />
+      <input type="hidden" name="user_name" defaultValue={"Greetings " + name}/>
+      <input type="hidden" name="user_email" defaultValue={email}/>
+      <input type="hidden" name="subject" defaultValue={"Movie Theater Public Announcment"}/>
+      <input type="hidden" name="message" defaultValue={"Keep an eye out for tickets! " + movieTitle + " has been added to the upcoming movies"} />
+      <input type="hidden" name="messageone" defaultValue={"We hope to see you at the movies"}/>
     </form>
     </div>
   );
