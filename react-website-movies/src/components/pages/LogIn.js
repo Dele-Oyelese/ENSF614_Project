@@ -22,6 +22,17 @@ function LogIn(){
       navigate('/allmovies');
   }
 
+  const adminClick = (e) => {
+    if(email === "admin" && password === "1234"){
+      setEmail('');
+      localStorage.clear();
+      navigate('/admin');
+    } else {
+      alert("Incorrect admin information")
+    }
+    
+  }
+
     const loginClick = (e) =>{
         fetch("http://localhost:8080/api/v1/user/Email/".concat(email) )
         .then(res => res.json())
@@ -63,7 +74,9 @@ function LogIn(){
 
             <hr></hr>
 
-            <button type="submit" class="btn btn-primary" onClick={handleClick}>Continue as Guest</button>   
+            <button type="submit" class="btn btn-primary" onClick={handleClick}>Continue as Guest</button>
+            <br></br>
+            <button type="submit" class="btn btn-primary" onClick={adminClick}>Login As Admin</button>  
         </div>            
         </>
     );
