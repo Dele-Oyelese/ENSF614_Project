@@ -76,33 +76,63 @@ public class BoxOfficeService {
 
         switch(seatId){
             case 1:
+                if(movie.isSeat1() == false){
+                    throw new IllegalStateException("Seat with id " + seatId + " is taken");
+                }
                 movie.setSeat1(false);
                 break;
             case 2:
+                if(movie.isSeat2() == false){
+                    throw new IllegalStateException("Seat with id " + seatId + " is taken");
+                }
                 movie.setSeat2(false);
                 break;
             case 3:
+                if(movie.isSeat3() == false){
+                    throw new IllegalStateException("Seat with id " + seatId + " is taken");
+                }
                 movie.setSeat3(false);
                 break;
             case 4:
+                if(movie.isSeat4() == false){
+                    throw new IllegalStateException("Seat with id " + seatId + " is taken");
+                }
                 movie.setSeat4(false);
                 break;
             case 5:
+                if(movie.isSeat5() == false){
+                    throw new IllegalStateException("Seat with id " + seatId + " is taken");
+                }
                 movie.setSeat5(false);
                 break;
             case 6:
+                if(movie.isSeat6() == false){
+                    throw new IllegalStateException("Seat with id " + seatId + " is taken");
+                }
                 movie.setSeat6(false);
                 break;
             case 7:
+                if(movie.isSeat7() == false){
+                    throw new IllegalStateException("Seat with id " + seatId + " is taken");
+                }
                 movie.setSeat7(false);
                 break;
             case 8:
+                if(movie.isSeat8() == false){
+                    throw new IllegalStateException("Seat with id " + seatId + " is taken");
+                }
                 movie.setSeat8(false);
                 break;
             case 9:
+                if(movie.isSeat9() == false){
+                    throw new IllegalStateException("Seat with id " + seatId + " is taken");
+                }
                 movie.setSeat9(false);
                 break;
             case 10:
+                if(movie.isSeat10() == false){
+                    throw new IllegalStateException("Seat with id " + seatId + " is taken");
+                }
                 movie.setSeat10(false);
                 break;
             default:
