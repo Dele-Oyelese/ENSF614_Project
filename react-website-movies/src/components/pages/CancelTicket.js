@@ -28,8 +28,8 @@ function CancelTicket() {
                 console.log(result.boxOffices[0].movie.showTime)
                 console.log(ticket)
                 setStatus(
-                    Array.isArray(ticket)
-                        ? ticket.map(item => {
+                    Array.isArray(result)
+                        ? result.map(item => {
                             return (item.buyerStatus)
                         })
                         : null
@@ -63,7 +63,7 @@ function CancelTicket() {
                     console.log(timeDiff);
 
                     if (timeDiff >= 3) {
-                        alert("Sorry, it has already been 72 hours from your purchased time. No refund can be processed");
+                        alert("Sorry, users are able to cancel their ticket only up to 72 hours prior to show");
                     } else {
                         //first deleting the ticket 
                         const url = "http://localhost:8080/api/v1/boxOffice/cancel/" + ticketId;
