@@ -19,10 +19,7 @@ function Navbar() {
                 </li>
                 <li className='nav-item'>
                     <Link to='/register' className='nav-links' > Register </Link>
-                </li>
-                <li className='nav-item'>
-                    <Link to='/ContactUs' className='nav-links' > Contact Us </Link>
-                </li>
+                </li>                
 
                 <li className='nav-item'>
                     <Link to='/login' className='nav-links' > Log In </Link>

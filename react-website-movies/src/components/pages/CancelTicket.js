@@ -83,7 +83,7 @@ function CancelTicket() {
                         }
 
                         if (buyerStatus == false) {
-                            alert("Please type your email to recieve your coupon valued at $8");
+                            alert("Please type your email to recieve your coupon valued at $8.50");
                             // <CancellationEmail />
                         }
                     }

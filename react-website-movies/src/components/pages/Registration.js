@@ -7,11 +7,11 @@ function Registration() {
     const [address, setaddress] = useState("");
     const [password, setpassword] = useState("");
     const [email, setemail] = useState("");
-    const [creditcard, setcreditcard] = useState("");
+    const [creditNum, setcreditcard] = useState("");
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const user = { name, address, password, email, creditcard };
+        const user = { name, address, password, email, creditNum };
         console.log(JSON.stringify(user));
         fetch("http://localhost:8080/api/v1/user", {
             method: "POST",
@@ -80,7 +80,7 @@ function Registration() {
                     <label>Credit Card Number</label>
                     <input
                         type="text"
-                        value={creditcard}
+                        value={creditNum}
                         onChange={(e) => setcreditcard(e.target.value)}
                         className="form-control"
                         placeholder="Enter credit card number: e.g 1234 5678 9101 1213"

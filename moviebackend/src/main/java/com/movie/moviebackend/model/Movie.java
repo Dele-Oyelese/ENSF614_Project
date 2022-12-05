@@ -93,6 +93,14 @@ public class Movie  {
 
 
     }
+
+    public Movie(Long id, String title)
+    {
+        this.title = title;
+        this.id = id;
+        this.showTime = LocalDateTime.now();
+    }
+
     //Constructor without ID
     public Movie(String title, LocalDateTime showTime)
     {

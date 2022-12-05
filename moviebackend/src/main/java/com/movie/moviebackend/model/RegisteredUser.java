@@ -31,7 +31,7 @@ public class RegisteredUser {
 
     //Initate Registration date using LocalDate to JSON
     @JsonFormat(pattern="yyyy-MM-dd")
-    private LocalDate regDate;
+    private LocalDate regDate = LocalDate.now();
 // Add Password and CreditNum
     private String password;
     private int creditNum;

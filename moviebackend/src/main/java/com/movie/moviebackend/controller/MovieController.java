@@ -32,10 +32,10 @@ public class MovieController {
     }
 
     @PostMapping("/add")
-    public String addNewMovie(@RequestBody Movie movie)
+    public void addNewMovie(@RequestBody Movie movie)
     {
         movieService.addNewMovie(movie);
-        return "New movie added.";
+//        return "New movie added.";
     }
 // Delete a movie based on id
     @DeleteMapping(path = "{id}")

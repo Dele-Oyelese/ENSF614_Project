@@ -37,10 +37,10 @@ public class MovieService {
     {
         Optional<Movie> movieById = movieRepo.findById(movie.getId());
 
-        if(movieById.isPresent())
-        {
-            throw new IllegalStateException("Movie already exists.");
-        }
+//        if(movieById.isPresent())
+//        {
+//            throw new IllegalStateException("Movie already exists.");
+//        }
 
         movieRepo.save(movie);
     }
