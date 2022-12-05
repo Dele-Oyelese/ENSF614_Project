@@ -1,7 +1,8 @@
 import '../../App.css';
 import React, { useState } from 'react';
-import { useRef } from 'react';
-import emailjs from 'emailjs-com';
+// import { useRef } from 'react';
+// import emailjs from 'emailjs-com';
+import CancellationEmail from '../CancellationEmail';
 
 function CancelTicket() {
 
@@ -12,6 +13,7 @@ function CancelTicket() {
     const [email, setEmail] = useState('')
     const now = new Date();
     const dayTime = 24 * 60 * 60 * 1000;
+    const [num, setnum] = useState();
 
     const handleClick = (e) => {
         e.preventDefault();
@@ -23,6 +25,7 @@ function CancelTicket() {
             .then((result) => {
 
                 setticket(result);
+                localStorage.setItem("ticketID", ticketId)
 
                 console.log(result);
                 console.log(result.boxOffices[0].movie.showTime)
@@ -60,6 +63,7 @@ function CancelTicket() {
                     payDate.setHours(hr, min, sec)
                     console.log(payDate)
                     const timeDiff = (payDate - now) / dayTime;
+                    setnum(timeDiff);
                     console.log(timeDiff);
 
                     if (timeDiff >= 3) {
@@ -75,10 +79,12 @@ function CancelTicket() {
 
                         if (buyerStatus == true) {
                             alert("Please type your email to recieve your coupon valued at $10");
+                            // <CancellationEmail />
                         }
 
                         if (buyerStatus == false) {
                             alert("Please type your email to recieve your coupon valued at $8");
+                            // <CancellationEmail />
                         }
                     }
                 }
@@ -86,17 +92,17 @@ function CancelTicket() {
 
     }
 
-    const form = useRef();
+    // const form = useRef();
 
-    const sendEmail = (e) => {
-        e.preventDefault();
-        emailjs.sendForm('gmail', 'template_7woudlf', form.current, 'GE7vkWWcHkEMc_LhW')
-            .then((result) => {
-                console.log(result.text);
-            }, (error) => {
-                console.log(error.text);
-            });
-    };
+    // const sendEmail = (e) => {
+    //     e.preventDefault();
+    //     emailjs.sendForm('gmail', 'template_7woudlf', form.current, 'GE7vkWWcHkEMc_LhW')
+    //         .then((result) => {
+    //             console.log(result.text);
+    //         }, (error) => {
+    //             console.log(error.text);
+    //         });
+    // };
 
     return (
         <>
@@ -118,7 +124,10 @@ function CancelTicket() {
                         onClick={handleClick}
                         class="btn btn-primary" >Request Cancellation</button>
                     <br></br>
-                    <hr></hr>
+
+                    {num<= 3 ? <CancellationEmail />: <p>sorry you dont qualify</p>}
+
+                    {/* <hr></hr>
                     <input
                         type="text"
                         class="form-control"
@@ -129,16 +138,16 @@ function CancelTicket() {
                     <button
                         type="submit"
                         onClick={sendEmail}
-                        class="btn btn-primary" >Send Email Confirmation</button>
+                        class="btn btn-primary" >Send Email Confirmation</button> */}
                 </form>
             </div>
-            <form ref={form} onSubmit={sendEmail}>
+            {/* <form ref={form} onSubmit={sendEmail}>
                 <input type="hidden" name="user_name" defaultValue={"Greetings "} />
                 <input type="hidden" name="user_email" defaultValue={email} />
                 <input type="hidden" name="subject" defaultValue={"Movie Theater Cancellation Confirmation"} />
                 <input type="hidden" name="message" defaultValue={"Confirming your cancelation for ticketID: " + ticketId + ", in the future please use the follwing Coupon Code for 15% off your next purchase: 15MOVIE15"} />
                 <input type="hidden" name="messageone" defaultValue={"We hope to see you at the movies"} />
-            </form>
+            </form> */}
 
 
         </>
