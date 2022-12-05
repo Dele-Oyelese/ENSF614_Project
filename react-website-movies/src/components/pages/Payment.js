@@ -13,6 +13,11 @@ function Payment(props) {
     const [creditcard, setcreditcard] = useState("");
     const [user, setUser] = useState([]);    
     const [flag, setFlag] = useState(1);
+    const [coupon, setCoupon] = useState('')
+    let price = "$10"
+    if(coupon == "15MOVIE15"){
+        price = "$8.50"
+    }
 
     useEffect(() => {
         if (localStorage.getItem("email") == null) {
@@ -56,10 +61,6 @@ function Payment(props) {
             headers: { "Content-Type": "application/json" },
         }).then(() => {
             alert("Ticket successfully added");            
-            setname("");
-            setaddress("");
-            setcreditcard("");
-            setemail("");
           })
         
     }
@@ -73,6 +74,7 @@ function Payment(props) {
                     <p name="movie_id">Movie ID: {localStorage.getItem("id")}</p>
                     <p name="movie_name">Movie Name: {localStorage.getItem("title")}</p>
                     <p name="show_time">Show Time: {localStorage.getItem("showTime")}</p>
+                    <p name="movie_price">Movie Price: {price}</p>
                     <p> Seat Number: {localStorage.getItem("seatid")}</p>
                 </div>
 
@@ -124,6 +126,17 @@ function Payment(props) {
                             placeholder="Enter credit card number: e.g 1234 5678 9101 1213"
                         ></input>
                     </div>
+                    <div className="form-group">
+                        <label>Coupon Code</label>
+                        <input
+                            type="text"
+                            defaultValue={""}
+                            onChange={(e) => setCoupon(e.target.value)}
+                            className="form-control"
+                            placeholder="50Mov50"
+                        ></input>
+                    </div>
+                    
                     <button type="submit" className="btn btn-primary" onClick={purchaseTicket}>
                         Purchase Ticket
                     </button>
@@ -140,7 +153,7 @@ function Payment(props) {
 
                     <input type="hidden" name="subject" defaultValue={"Movie Theater Confirmation Ticket"} />
 
-                    <input type="hidden" name="message" defaultValue={"We hope you enjoy your showing of " + localStorage.getItem("title") + ", your movie information is: TicketID: " + props.ticketValue + ", Movie Showtime: " + localStorage.getItem("showTime") + ", in seat #: " + localStorage.getItem("seatid")} />
+                    <input type="hidden" name="message" defaultValue={"We hope you enjoy your showing of " + localStorage.getItem("title") + ", your movie information is: TicketID: " + props.ticketValue + ", Movie Showtime: " + localStorage.getItem("showTime") + ", in seat #: " + localStorage.getItem("seatid") + ", for a total price of: " + price} />
 
                     <input type="hidden" name="messageone" defaultValue={"If you would like to cancel your ticket please go to the following website and put in your Ticket ID:  https://localhost:3000/cancelticket"} />
 
