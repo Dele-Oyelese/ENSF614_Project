@@ -66,7 +66,7 @@ function CancelTicket() {
                     setnum(timeDiff);
                     console.log(timeDiff);
 
-                    if (timeDiff >= 3) {
+                    if (timeDiff <= 3) {
                         alert("Sorry, users are able to cancel their ticket only up to 72 hours prior to show");
                     } else {
                         //first deleting the ticket 
@@ -125,7 +125,7 @@ function CancelTicket() {
                         class="btn btn-primary" >Request Cancellation</button>
                     <br></br>
 
-                    {num<= 3 ? <CancellationEmail />: <p>sorry you dont qualify</p>}
+                    {num >= 3 ? <CancellationEmail />: <p></p>}
 
                     {/* <hr></hr>
                     <input
